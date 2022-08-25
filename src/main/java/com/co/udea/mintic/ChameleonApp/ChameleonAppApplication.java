@@ -10,6 +10,7 @@ public class ChameleonAppApplication {
 		SpringApplication.run(ChameleonAppApplication.class, args);
 		System.out.println("Hello my people. I'm Armando!");
 		System.out.println("hola soy Diego, saludos");
+		System.out.println("Hola soy luisa");
 	}
 
 }
