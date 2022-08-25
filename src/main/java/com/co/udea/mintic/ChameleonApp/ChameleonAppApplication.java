@@ -9,6 +9,7 @@ public class ChameleonAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ChameleonAppApplication.class, args);
 		System.out.println("Hello my people. I'm Armando!");
+		System.out.println("hola soy Diego, saludos");
 	}
 
 }
