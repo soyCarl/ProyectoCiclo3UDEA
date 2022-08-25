@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ChameleonAppApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(ChameleonAppApplication.class, args);
+		System.out.println("hola soy diego");
+
 	}
 
 }
