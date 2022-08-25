@@ -20,7 +20,7 @@ _ScrumTeam_
 
 ## Herramientas utilizadas 🛠️
 
- *[Java]()  
+* [Java]()
 * [HTML]()  
 * [CSS3]()
 * [SprintBoot)]()
