@@ -2,7 +2,7 @@ package com.co.udea.mintic.ChameleonApp.Entities;
 
 
 public class Empleado {
-
+    private Long id;
     private String nombreEmpleado;
     private String correoEmpleado;
     private String empresaEmpleado;

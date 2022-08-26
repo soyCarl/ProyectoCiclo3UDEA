@@ -2,10 +2,12 @@ package com.co.udea.mintic.ChameleonApp.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Empresa {
     /* ------- Atributos ------- */
+
     private String nombreEmpresa;
     private String direccionEmpresa;
     private String telefonoEmpresa;
