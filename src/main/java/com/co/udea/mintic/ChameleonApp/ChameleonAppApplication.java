@@ -1,6 +1,7 @@
 package com.co.udea.mintic.ChameleonApp;
 
 import com.co.udea.mintic.ChameleonApp.Entities.Empleado;
+import com.co.udea.mintic.ChameleonApp.Entities.Empresa;
 import com.co.udea.mintic.ChameleonApp.Entities.MovimientoDinero;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,15 +20,14 @@ public class ChameleonAppApplication {
 		System.out.println("Hola soy luisa");
 		System.out.println("Hola, soy Briggid");
 
-		//Instancia de la clase MovimientoDinero
-		MovimientoDinero compra = new MovimientoDinero();
-		compra.setConcepto("Compra televisor");
-		compra.setMonto(1500000f);
-		compra.setEmpleado(new Empleado("Diego","prueba@gmail.com","Chamaleon","ADMIN"));
+		//Intancia Modelo Empresa
+		Empresa empresa = new Empresa();
+		empresa.setNombreEmpresa("Chameleon Devs");
+		empresa.setDireccionEmpresa("Plaza Bolivar");
+		empresa.setTelefonoEmpresa("555 5555");
+		empresa.setNitEmpresa("1236571-1");
+		//Intancia Modelo Empresa
 
-		System.out.println(compra.getConcepto());
-		System.out.println(compra.getMonto());
-		System.out.println(compra.getEmpleado().toString());
 
 	    //Instancia de la clase Empleado
 		Empleado empleado = new Empleado();
@@ -40,8 +40,19 @@ public class ChameleonAppApplication {
 		System.out.println(empleado.getCorreoEmpleado());
 		System.out.println(empleado.getEmpresaEmpleado());
 		System.out.println(empleado.getRolEmpleado());
+		//Instancia de la clase Empleado
 
 
+		//Instancia de la clase MovimientoDinero
+		MovimientoDinero compra = new MovimientoDinero();
+		compra.setConcepto("Compra televisor");
+		compra.setMonto(1500000f);
+		compra.setEmpleado(new Empleado("Diego","prueba@gmail.com","Chamaleon","ADMIN"));
+
+		System.out.println(compra.getConcepto());
+		System.out.println(compra.getMonto());
+		System.out.println(compra.getEmpleado().toString());
+		//Instancia de la clase MovimientoDinero
 
 	}
 

@@ -1,5 +1,9 @@
 package com.co.udea.mintic.ChameleonApp.Entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Empresa {
     /* ------- Atributos ------- */
     private String nombreEmpresa;
