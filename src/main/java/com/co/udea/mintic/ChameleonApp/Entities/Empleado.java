@@ -7,6 +7,9 @@ public class Empleado {
     private String empresaEmpleado;
     private String rolEmpleado;
 
+    public Empleado() {
+    }
+
     public Empleado(String nombreEmpleado, String correoEmpleado, String empresaEmpleado, String rolEmpleado){
         this.nombreEmpleado=nombreEmpleado;
         this.correoEmpleado=correoEmpleado;

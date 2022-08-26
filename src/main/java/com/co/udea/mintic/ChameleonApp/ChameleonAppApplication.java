@@ -17,6 +17,7 @@ public class ChameleonAppApplication {
 		System.out.println("Hello my people. I'm Armando!");
 		System.out.println("hola soy Diego, saludos");
 		System.out.println("Hola soy luisa");
+		System.out.println("Hola, soy Briggid");
 
 		//Instancia de la clase MovimientoDinero
 		MovimientoDinero compra = new MovimientoDinero();
@@ -27,6 +28,19 @@ public class ChameleonAppApplication {
 		System.out.println(compra.getConcepto());
 		System.out.println(compra.getMonto());
 		System.out.println(compra.getEmpleado().toString());
+
+	    //Instancia de la clase Empleado
+		Empleado empleado = new Empleado();
+		empleado.setNombreEmpleado("Briggid Sierra");
+		empleado.setCorreoEmpleado("brisierrav@gmail.com");
+		empleado.setEmpresaEmpleado("Chameleon");
+		empleado.setRolEmpleado("");
+
+		System.out.println(empleado.getNombreEmpleado());
+		System.out.println(empleado.getCorreoEmpleado());
+		System.out.println(empleado.getEmpresaEmpleado());
+		System.out.println(empleado.getRolEmpleado());
+
 
 
 	}
