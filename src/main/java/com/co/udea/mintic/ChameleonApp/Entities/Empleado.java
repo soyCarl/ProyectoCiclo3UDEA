@@ -15,4 +15,11 @@ public class Empleado {
     }
     //Espacio para Getter y Setter
 
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombreEmpleado='" + nombreEmpleado + '\'' +
+                '}';
+    }
 }

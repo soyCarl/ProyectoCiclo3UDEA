@@ -21,7 +21,16 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-     public Long getId() {
+    public MovimientoDinero(Long id, String concepto, Float monto, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+        this.id = id;
+        this.concepto = concepto;
+        this.monto = monto;
+        this.empleado = empleado;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -68,4 +77,5 @@ public class MovimientoDinero {
     public void setFechaActualizacion(Date fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
+
 }
