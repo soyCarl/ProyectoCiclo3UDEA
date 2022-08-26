@@ -21,16 +21,7 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(Long id, String concepto, Float monto, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
-        this.id = id;
-        this.concepto = concepto;
-        this.monto = monto;
-        this.empleado = empleado;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaActualizacion = fechaActualizacion;
-    }
-
-    public Long getId() {
+     public Long getId() {
         return id;
     }
 
