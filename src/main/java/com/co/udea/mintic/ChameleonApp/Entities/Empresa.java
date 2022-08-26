@@ -9,6 +9,18 @@ public class Empresa {
     /* ------- Atributos ------- */
 
 
+    /* ------- Constructor ------- */
+    public Empresa() {
+    }
+    public Empresa(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, String nitEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+        this.direccionEmpresa = direccionEmpresa;
+        this.telefonoEmpresa = telefonoEmpresa;
+        this.nitEmpresa = nitEmpresa;
+    }
+    /* ------- Constructor ------- */
+
+
     /* ------- Getters & Setters ------- */
     public String getNombreEmpresa() {
         return nombreEmpresa;
@@ -35,8 +47,6 @@ public class Empresa {
         this.nitEmpresa = nitEmpresa;
     }
     /* ------- Getters & Setters ------- */
-
-
 
 
 }
