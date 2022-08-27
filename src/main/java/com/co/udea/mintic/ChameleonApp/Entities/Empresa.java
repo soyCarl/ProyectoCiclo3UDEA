@@ -1,13 +1,16 @@
 package com.co.udea.mintic.ChameleonApp.Entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Empresa {
     /* ------- Atributos ------- */
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long empresaId;
     private String nombreEmpresa;
     private String direccionEmpresa;
     private String telefonoEmpresa;
@@ -18,7 +21,8 @@ public class Empresa {
     /* ------- Constructor ------- */
     public Empresa() {
     }
-    public Empresa(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, String nitEmpresa) {
+    public Empresa(Long empresaId, String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, String nitEmpresa) {
+        this.empresaId = empresaId;
         this.nombreEmpresa = nombreEmpresa;
         this.direccionEmpresa = direccionEmpresa;
         this.telefonoEmpresa = telefonoEmpresa;
@@ -28,6 +32,12 @@ public class Empresa {
 
 
     /* ------- Getters & Setters ------- */
+    public Long getEmpresaId() {
+        return empresaId;
+    }
+    public void setEmpresaId(Long empresaId) {
+        this.empresaId = empresaId;
+    }
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }

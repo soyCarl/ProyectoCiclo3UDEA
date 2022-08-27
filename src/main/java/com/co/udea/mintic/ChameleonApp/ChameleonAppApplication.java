@@ -28,6 +28,11 @@ public class ChameleonAppApplication {
 		empresa.setDireccionEmpresa("Plaza Bolivar");
 		empresa.setTelefonoEmpresa("555 5555");
 		empresa.setNitEmpresa("1236571-1");
+
+		System.out.println("\nNombre de la empresa: " + empresa.getNombreEmpresa());
+		System.out.println("Direccion de la empresa: " + empresa.getDireccionEmpresa());
+		System.out.println("Telefono de la empresa: " + empresa.getTelefonoEmpresa());
+		System.out.println("Nit de la empresa: " + empresa.getNitEmpresa() + "\n");
 		//Intancia Modelo Empresa
 
 
