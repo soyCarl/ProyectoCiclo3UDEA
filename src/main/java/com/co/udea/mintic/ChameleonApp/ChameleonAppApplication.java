@@ -16,11 +16,13 @@ public class ChameleonAppApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(ChameleonAppApplication.class, args);
+		/*
 		System.out.println("Hello my people. I'm Armando!");
 		System.out.println("hola soy Diego, saludos");
 		System.out.println("Hola soy luisa");
 		System.out.println("Hola, soy Briggid");
 		System.out.println("Hola soy Pablo");
+		*/
 
 		//Intancia Modelo Empresa
 		Empresa empresa = new Empresa();
@@ -41,12 +43,12 @@ public class ChameleonAppApplication {
 		empleado.setNombreEmpleado("Briggid Sierra");
 		empleado.setCorreoEmpleado("brisierrav@gmail.com");
 		empleado.setEmpresaEmpleado("Chameleon");
-		empleado.setRolEmpleado("");
+		empleado.setRolEmpleado("Administrador");
 
-		System.out.println(empleado.getNombreEmpleado());
-		System.out.println(empleado.getCorreoEmpleado());
-		System.out.println(empleado.getEmpresaEmpleado());
-		System.out.println(empleado.getRolEmpleado());
+		System.out.println("\nNombre del empleado: " + empleado.getNombreEmpleado());
+		System.out.println("Correo electronico del empleado: " + empleado.getCorreoEmpleado());
+		System.out.println("Empresa del empleado: " + empleado.getEmpresaEmpleado());
+		System.out.println("Rol del empleado: " + empleado.getRolEmpleado() + "\n");
 		//Instancia de la clase Empleado
 
 
@@ -56,9 +58,9 @@ public class ChameleonAppApplication {
 		compra.setMonto(1500000f);
 		compra.setEmpleado(new Empleado("Diego","prueba@gmail.com","Chamaleon","ADMIN"));
 
-		System.out.println(compra.getConcepto());
-		System.out.println(compra.getMonto());
-		System.out.println(compra.getEmpleado().toString());
+		System.out.println("\nCompra realizada: " + compra.getConcepto());
+		System.out.println("Valor de la compra: " + compra.getMonto());
+		System.out.println("Nombre del empleado que realiza la compra: " + compra.getEmpleado().toString() + "\n");
 		//Instancia de la clase MovimientoDinero
 
 	}
