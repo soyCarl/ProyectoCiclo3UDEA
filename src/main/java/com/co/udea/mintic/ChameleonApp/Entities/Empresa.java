@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Empresa {
-    /* ------- Atributos ------- */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long empresaId;

@@ -4,62 +4,52 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class MovimientoDinero {
+public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String concepto;
-    private Float monto;
-    @ManyToOne
+    private String id;
+    private String imagen;
+    private String telefono;
+    @OneToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
     private Date fechaCreacion;
     private Date fechaActualizacion;
 
-    public MovimientoDinero() {
+    public Perfil() {
+
     }
 
-    public MovimientoDinero(Long id, String concepto, Float monto, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
-        this.id = id;
-        this.concepto = concepto;
-        this.monto = monto;
+    public Perfil(String imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+        this.imagen = imagen;
+        this.telefono = telefono;
         this.empleado = empleado;
         this.fechaCreacion = fechaCreacion;
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getConcepto() {
-        return concepto;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    public Float getMonto() {
-        return monto;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setMonto(Float monto) {
-        this.monto = monto;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Date getFechaCreacion() {
@@ -77,5 +67,14 @@ public class MovimientoDinero {
     public void setFechaActualizacion(Date fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
 
 }

@@ -1,28 +1,32 @@
 package com.co.udea.mintic.ChameleonApp;
 
+
 import com.co.udea.mintic.ChameleonApp.Entities.Empleado;
 import com.co.udea.mintic.ChameleonApp.Entities.Empresa;
 import com.co.udea.mintic.ChameleonApp.Entities.MovimientoDinero;
+import com.co.udea.mintic.ChameleonApp.Entities.Perfil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class ChameleonAppApplication {
 
-	public static void main(String[] args) {
 
-		SpringApplication.run(ChameleonAppApplication.class, args);
+    public static void main(String[] args) {
+
+        SpringApplication.run(ChameleonAppApplication.class, args);
 		/*
 		System.out.println("Hello my people. I'm Armando!");
 		System.out.println("hola soy Diego, saludos");
 		System.out.println("Hola soy luisa");
 		System.out.println("Hola, soy Briggid");
 		System.out.println("Hola soy Pablo");
-		*/
+
 
 		//Intancia Modelo Empresa
 		Empresa empresa = new Empresa();
@@ -62,8 +66,28 @@ public class ChameleonAppApplication {
 		System.out.println("Valor de la compra: " + compra.getMonto());
 		System.out.println("Nombre del empleado que realiza la compra: " + compra.getEmpleado().toString() + "\n");
 		//Instancia de la clase MovimientoDinero
+*/
 
-	}
+		Empleado empleado = new Empleado();
+
+        empleado.setId(01L);
+        empleado.setCorreoEmpleado("cdtobon19@gmail.com");
+        empleado.setPerfil(new Perfil());
+        empleado.setRolEmpleado("ADMIN");
+		empleado.setEmpresa(new Empresa());
+		empleado.setMovDinero(new ArrayList<MovimientoDinero>());
+
+
+		System.out.println("Id empleado:"+empleado.getId());
+		System.out.println("Correo empleado:"+empleado.getCorreoEmpleado());
+		System.out.println("Perfil empleado:"+empleado.getPerfil());
+		System.out.println("Rol empleado:"+empleado.getRolEmpleado());
+		System.out.println("Empresa empleado:"+empleado.getEmpresa());
+		System.out.println("Movimientos empleado:"+empleado.getMovDinero());
+		System.out.println("Fecha creacion empleado:"+empleado.getFechaCreacion());
+		System.out.println("Fecha modificacion empleado:"+empleado.getFechaModificacion());
+
+    }
 
 }
 
