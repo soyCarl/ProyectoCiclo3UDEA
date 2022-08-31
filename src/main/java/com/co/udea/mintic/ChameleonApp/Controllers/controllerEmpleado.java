@@ -10,16 +10,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 public class controllerEmpleado {
-    @Autowired(required=false)
+    @Autowired
     EmpleadoServices empleadoService;
 
     @GetMapping("/empleado") //Ver json de todos los empleados
-    public List<Empleado> verEmpresas(){
+    public List<Empleado> verEmpleados(){
         return empleadoService.getAllEmpleados();
     }
 
     @PostMapping("/empleado") //Guardar el json del body como un nuevo empleado o registro en nuestra bd
-    public Empleado guardarEmpresa(@RequestBody Empleado emple){
+    public Empleado guardarEmpleado(@RequestBody Empleado emple){
         return this.empleadoService.saveOrUpdateEmpleado(emple);
     }
 
@@ -29,7 +29,7 @@ public class controllerEmpleado {
     }
 
     @PatchMapping("/empleado/{id}")
-    public Empleado actualizarEmpresa(@PathVariable("id") Integer id, @RequestBody Empleado emple){
+    public Empleado actualizarEmpleado(@PathVariable("id") Integer id, @RequestBody Empleado emple){
         Empleado emp= empleadoService.getEmpleadoById(id);
         emp.setCorreoEmpleado(emple.getCorreoEmpleado());
         emp.setPerfil(emple.getPerfil());

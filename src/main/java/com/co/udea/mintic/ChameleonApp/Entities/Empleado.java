@@ -1,31 +1,56 @@
 package com.co.udea.mintic.ChameleonApp.Entities;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "empleado")
 public class Empleado {
-    private Long id;
-    private String nombreEmpleado;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_empleado")
+    private int id;
+    @Column(name = "correo")
     private String correoEmpleado;
-    private String empresaEmpleado;
+    @OneToOne
+    @JoinColumn(name = "perfil_id")
+    @Column(name = "perfil")
+    private Perfil perfil;
+    @Column(name = "rol_empleado")
     private Enum_RoleName rolEmpleado;
+    @ManyToOne
+    @JoinColumn(name = "empresa_empresa_id")
+    private Empresa empresa;
+    @Column(name = "movimiento")
+    private List<MovimientoDinero> movDinero = new ArrayList<>();
+    @Column(name = "fecha_creacion")
+    private Date fechaCreacion;
+    @Column(name = "fecha_modificacion")
+    private Date fechaModificacion;
 
     public Empleado() {
+
     }
 
-    public Empleado(String nombreEmpleado, String correoEmpleado, String empresaEmpleado, String rolEmpleado){
-        this.nombreEmpleado=nombreEmpleado;
-        this.correoEmpleado=correoEmpleado;
-        this.empresaEmpleado=empresaEmpleado;
-        this.rolEmpleado= Enum_RoleName.valueOf(rolEmpleado);
-    }
-    //Espacio para Getter y Setter
-
-
-    public String getNombreEmpleado() {
-        return nombreEmpleado;
+    public Empleado(int id, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+        this.id = id;
+        this.correoEmpleado = correoEmpleado;
+        this.perfil = perfil;
+        this.rolEmpleado = rolEmpleado;
+        this.empresa = empresa;
+        this.movDinero = movDinero;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaModificacion = fechaModificacion;
     }
 
-    public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombreEmpleado = nombreEmpleado;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCorreoEmpleado() {
@@ -36,12 +61,12 @@ public class Empleado {
         this.correoEmpleado = correoEmpleado;
     }
 
-    public String getEmpresaEmpleado() {
-        return empresaEmpleado;
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void setEmpresaEmpleado(String empresaEmpleado) {
-        this.empresaEmpleado = empresaEmpleado;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public Enum_RoleName getRolEmpleado() {
@@ -52,10 +77,35 @@ public class Empleado {
         this.rolEmpleado = rolEmpleado;
     }
 
-    @Override
-    public String toString() {
-        return "Empleado{" +
-                "nombreEmpleado='" + nombreEmpleado + '\'' +
-                '}';
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public List<MovimientoDinero> getMovDinero() {
+        return movDinero;
+    }
+
+    public void setMovDinero(List<MovimientoDinero> movDinero) {
+        this.movDinero = movDinero;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(Date fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
     }
 }
