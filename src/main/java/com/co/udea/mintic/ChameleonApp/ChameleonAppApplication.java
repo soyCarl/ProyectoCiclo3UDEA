@@ -70,7 +70,7 @@ public class ChameleonAppApplication {
         empleado.setId(01L);
         empleado.setCorreoEmpleado("cdtobon19@gmail.com");
         empleado.setPerfil(new Perfil());
-        empleado.setRolEmpleado(Enum_RoleName.valueOf("ADMIN"));
+        empleado.setRolEmpleado(Enum_RoleName.valueOf("ADMIN")); //al crear el enum pidio este cambio
 		empleado.setEmpresa(new Empresa());
 		empleado.setMovDinero(new ArrayList<MovimientoDinero>());
 

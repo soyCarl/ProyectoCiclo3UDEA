@@ -15,7 +15,7 @@ public class Empleado {
         this.nombreEmpleado=nombreEmpleado;
         this.correoEmpleado=correoEmpleado;
         this.empresaEmpleado=empresaEmpleado;
-        this.rolEmpleado=rolEmpleado;
+        this.rolEmpleado= Enum_RoleName.valueOf(rolEmpleado);
     }
     //Espacio para Getter y Setter
 
