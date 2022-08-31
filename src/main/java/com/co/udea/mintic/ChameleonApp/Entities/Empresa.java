@@ -1,31 +1,43 @@
 package com.co.udea.mintic.ChameleonApp.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name="Empresa")
 public class Empresa {
+    /* ------- Atributos ------- */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long empresaId;
-    private String nombreEmpresa;
-    private String direccionEmpresa;
-    private String telefonoEmpresa;
-    private String nitEmpresa;
+    @Column(name="id_empresa") private Long empresaId;
+    @Column(name = "nombre_empresa", unique = true) private String nombreEmpresa;
+    @Column(name = "nit_empresa", unique = true) private String nitEmpresa;
+    @Column(name = "teléfono_empresa") private String telefonoEmpresa;
+    @Column(name = "dirección_empresa") private String direccionEmpresa;
+
+    @OneToMany
+    @JoinColumn(name = "empleado_id") private Empleado empleado;
+
+    @OneToMany
+    @JoinColumn(name = "MovimientoDinero_id") private MovimientoDinero movimientoDinero;
+    @Column(name = "fecha_creación") private Date fechaCreacion;
+    @Column(name = "fecha_actualización")private Date fechaActualizacion;
     /* ------- Atributos ------- */
 
 
     /* ------- Constructor ------- */
     public Empresa() {
     }
-    public Empresa(Long empresaId, String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, String nitEmpresa) {
+    public Empresa(Long empresaId, String nombreEmpresa, String nitEmpresa, String telefonoEmpresa, String direccionEmpresa, Empleado empleado, MovimientoDinero movimientoDinero, Date fechaCreacion, Date fechaActualizacion) {
         this.empresaId = empresaId;
         this.nombreEmpresa = nombreEmpresa;
-        this.direccionEmpresa = direccionEmpresa;
-        this.telefonoEmpresa = telefonoEmpresa;
         this.nitEmpresa = nitEmpresa;
+        this.telefonoEmpresa = telefonoEmpresa;
+        this.direccionEmpresa = direccionEmpresa;
+        this.empleado = empleado;
+        this.movimientoDinero = movimientoDinero;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaActualizacion = fechaActualizacion;
     }
     /* ------- Constructor ------- */
 
@@ -60,6 +72,30 @@ public class Empresa {
     }
     public void setNitEmpresa(String nitEmpresa) {
         this.nitEmpresa = nitEmpresa;
+    }
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    public MovimientoDinero getMovimientoDinero() {
+        return movimientoDinero;
+    }
+    public void setMovimientoDinero(MovimientoDinero movimientoDinero) {
+        this.movimientoDinero = movimientoDinero;
+    }
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
     }
     /* ------- Getters & Setters ------- */
 
