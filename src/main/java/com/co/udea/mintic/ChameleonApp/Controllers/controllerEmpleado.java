@@ -33,7 +33,7 @@ public class controllerEmpleado {
         Empleado emp= empleadoService.getEmpleadoById(id);
         emp.setCorreoEmpleado(emple.getCorreoEmpleado());
         emp.setPerfil(emple.getPerfil());
-        emp.setRolEmpleado(emple.getRolEmpleado());
+        emp.setRolEmpleado(emple.getRolEmpleado());//Diego por favor revisar si en esta linea hay conflicto con haber creado el Enum de rolEmpleado
         emp.setEmpresa(emple.getEmpresa());
         emp.setMovDinero(emple.getMovDinero());
         emp.setFechaCreacion(emple.getFechaCreacion());

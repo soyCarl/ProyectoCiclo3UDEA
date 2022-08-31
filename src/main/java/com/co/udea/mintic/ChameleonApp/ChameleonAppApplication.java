@@ -1,10 +1,7 @@
 package com.co.udea.mintic.ChameleonApp;
 
 
-import com.co.udea.mintic.ChameleonApp.Entities.Empleado;
-import com.co.udea.mintic.ChameleonApp.Entities.Empresa;
-import com.co.udea.mintic.ChameleonApp.Entities.MovimientoDinero;
-import com.co.udea.mintic.ChameleonApp.Entities.Perfil;
+import com.co.udea.mintic.ChameleonApp.Entities.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -73,7 +70,7 @@ public class ChameleonAppApplication {
         empleado.setId(01L);
         empleado.setCorreoEmpleado("cdtobon19@gmail.com");
         empleado.setPerfil(new Perfil());
-        empleado.setRolEmpleado("ADMIN");
+        empleado.setRolEmpleado(Enum_RoleName.valueOf("ADMIN"));
 		empleado.setEmpresa(new Empresa());
 		empleado.setMovDinero(new ArrayList<MovimientoDinero>());
 
