@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class EmpleadoServices {
-    @Autowired //conexion automatica de esta clase con el repository de Empleado
+    //@Autowired //conexion automatica de esta clase con el repository de Empleado
     EmpleadoRepository empleadoRepository; //objeto tipo EmpleadoRepository para poder usar los metodos que dicha clase hereda
 
     //Metodo que retornará la lista de empleados usando metodos heredados del jpaRepository
