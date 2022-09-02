@@ -4,19 +4,20 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="Movimiento_Dinero")
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String concepto;
-    private Float monto;
+    @Column private Long id;
+    @Column private String concepto;
+    @Column private Float monto;
     @ManyToOne
     @JoinColumn(name = "empleado_id")
-    private Empleado empleado;
+    @Column private Empleado empleado;
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Date fechaCreacion;
-    private Date fechaActualizacion;
+    @Column private Date fechaActualizacion;
 
     public MovimientoDinero() {
     }
