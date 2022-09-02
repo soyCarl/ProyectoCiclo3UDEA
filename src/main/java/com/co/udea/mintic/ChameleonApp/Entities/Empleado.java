@@ -12,6 +12,8 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_empleado")
     private int id;
+    @Column(name = "nombre")
+    private String nombre;
     @Column(name = "correo")
     private String correoEmpleado;
     @OneToOne
@@ -34,8 +36,9 @@ public class Empleado {
 
     }
 
-    public Empleado(int id, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+    public Empleado(int id, String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
         this.id = id;
+        this.nombre = nombre;
         this.correoEmpleado = correoEmpleado;
         this.perfil = perfil;
         this.rolEmpleado = rolEmpleado;
@@ -51,6 +54,14 @@ public class Empleado {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCorreoEmpleado() {

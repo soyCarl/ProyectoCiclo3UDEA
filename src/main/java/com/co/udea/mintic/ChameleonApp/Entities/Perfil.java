@@ -1,6 +1,7 @@
 package com.co.udea.mintic.ChameleonApp.Entities;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.Date;
 
 @Entity
@@ -8,7 +9,7 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private bytea imagen;//revisar tipo de dato binario
+    private Image imagen;//revisar tipo de dato binario
     private String telefono;
     @OneToOne
     @JoinColumn(name = "empleado_id")
@@ -20,7 +21,7 @@ public class Perfil {
 
     }
 
-    public Perfil(String imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+    public Perfil(Image imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
         this.imagen = imagen;
         this.telefono = telefono;
         this.empleado = empleado;
@@ -28,19 +29,19 @@ public class Perfil {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getImagen() {
+    public Image getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Image imagen) {
         this.imagen = imagen;
     }
 
