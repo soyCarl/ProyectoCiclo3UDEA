@@ -16,7 +16,7 @@ public class controllerEmpresa {
 
     @PostMapping("/empresa")
     public String guardarEmpresas(){
-        return "Guarar empresa desde Post";
+        return "Guardar empresa desde Post";
     }
 
     @GetMapping(path = "/empresa/buscar/{id}")
