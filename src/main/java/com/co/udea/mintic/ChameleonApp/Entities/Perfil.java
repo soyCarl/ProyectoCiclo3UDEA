@@ -9,12 +9,16 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private Image imagen;//revisar tipo de dato binario
+    @Column(name = "imagen")
+    private image imagen;//revisar tipo de dato binario
+    @Column(name = "teléfono")
     private String telefono;
     @OneToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;
+    @Column(name = "fecha_creacion")
     private Date fechaCreacion;
+    @Column(name = "fecha_modificacion")
     private Date fechaActualizacion;
 
     public Perfil() {
