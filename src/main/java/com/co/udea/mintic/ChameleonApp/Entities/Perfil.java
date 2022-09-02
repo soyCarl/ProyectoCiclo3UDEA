@@ -7,8 +7,8 @@ import java.util.Date;
 public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-    private String imagen;
+    private int id;
+    private bytea imagen;//revisar tipo de dato binario
     private String telefono;
     @OneToOne
     @JoinColumn(name = "empleado_id")
