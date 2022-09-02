@@ -8,7 +8,7 @@ import java.util.Date;
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column private Long id;
+    @Column private int id;
     @Column private String concepto;
     @Column private Float monto;
     @ManyToOne
@@ -22,7 +22,7 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(Long id, String concepto, Float monto, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+    public MovimientoDinero(int id, String concepto, Float monto, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
@@ -31,11 +31,11 @@ public class MovimientoDinero {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
