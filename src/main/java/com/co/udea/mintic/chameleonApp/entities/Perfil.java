@@ -1,23 +1,30 @@
-package com.co.udea.mintic.ChameleonApp.Entities;
+package com.co.udea.mintic.chameleonApp.entities;
 
 import javax.persistence.*;
-import java.awt.*;
+import java.sql.Blob;
 import java.util.Date;
 
 @Entity
+@Table(name = "perfil")
 public class Perfil {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_perfil")
+    private Long id;
+
     @Column(name = "imagen")
-    private image imagen;//revisar tipo de dato binario
-    @Column(name = "teléfono")
+    private Blob imagen;
+
+    @Column(name = "telefono")
     private String telefono;
+
     @OneToOne
-    @JoinColumn(name = "empleado_id")
+    @JoinColumn(name = "id_empleado")
     private Empleado empleado;
+
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
+
     @Column(name = "fecha_modificacion")
     private Date fechaActualizacion;
 
@@ -25,7 +32,8 @@ public class Perfil {
 
     }
 
-    public Perfil(Image imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+    public Perfil(Long id, Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+        this.id = id;
         this.imagen = imagen;
         this.telefono = telefono;
         this.empleado = empleado;
@@ -33,19 +41,19 @@ public class Perfil {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Image getImagen() {
+    public Blob getImagen() {
         return imagen;
     }
 
-    public void setImagen(Image imagen) {
+    public void setImagen(Blob imagen) {
         this.imagen = imagen;
     }
 
@@ -55,6 +63,14 @@ public class Perfil {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
     public Date getFechaCreacion() {
@@ -73,13 +89,15 @@ public class Perfil {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    @Override
+    public String toString() {
+        return "Perfil{" +
+                "id=" + id +
+                ", imagen=" + imagen +
+                ", telefono='" + telefono + '\'' +
+                ", empleado=" + empleado +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizacion=" + fechaActualizacion +
+                '}';
     }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
-
-
 }

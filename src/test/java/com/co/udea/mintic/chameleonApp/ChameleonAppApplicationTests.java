@@ -1,4 +1,4 @@
-package com.co.udea.mintic.ChameleonApp;
+package com.co.udea.mintic.chameleonApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

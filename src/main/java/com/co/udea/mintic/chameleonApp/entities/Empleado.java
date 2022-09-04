@@ -1,4 +1,4 @@
-package com.co.udea.mintic.ChameleonApp.Entities;
+package com.co.udea.mintic.chameleonApp.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,26 +9,35 @@ import java.util.List;
 @Table(name = "empleado")
 public class Empleado {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empleado")
-    private int id;
+    private Long id;
+
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "correo")
+
+    @Column(name = "correo", unique = true)
     private String correoEmpleado;
+
     @OneToOne
-    @JoinColumn(name = "perfil_id")
-    @Column(name = "perfil")
+    @JoinColumn(name = "id_perfil")
     private Perfil perfil;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "rol_empleado")
     private Enum_RoleName rolEmpleado;
+
     @ManyToOne
-    @JoinColumn(name = "empresa_empresa_id")
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
-    @Column(name = "movimiento")
+
+    @OneToMany
+    @JoinColumn(name = "id_movimiento_dinero")
     private List<MovimientoDinero> movDinero = new ArrayList<>();
+
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
+
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
@@ -36,7 +45,7 @@ public class Empleado {
 
     }
 
-    public Empleado(int id, String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+    public Empleado(Long id, String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
         this.id = id;
         this.nombre = nombre;
         this.correoEmpleado = correoEmpleado;
@@ -48,11 +57,11 @@ public class Empleado {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -118,5 +127,20 @@ public class Empleado {
 
     public void setFechaModificacion(Date fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correoEmpleado='" + correoEmpleado + '\'' +
+                ", perfil=" + perfil +
+                ", rolEmpleado=" + rolEmpleado +
+                ", empresa=" + empresa +
+                ", movDinero=" + movDinero +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaModificacion=" + fechaModificacion +
+                '}';
     }
 }

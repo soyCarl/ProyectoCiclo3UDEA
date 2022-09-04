@@ -1,14 +1,11 @@
-package com.co.udea.mintic.ChameleonApp;
+package com.co.udea.mintic.chameleonApp;
 
 
-import com.co.udea.mintic.ChameleonApp.Entities.*;
+import com.co.udea.mintic.chameleonApp.entities.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 @SpringBootApplication
 public class ChameleonAppApplication {
@@ -67,7 +64,7 @@ public class ChameleonAppApplication {
 
 		Empleado empleado = new Empleado();
 
-        empleado.setId(1);
+        empleado.setId(1l);
         empleado.setCorreoEmpleado("cdtobon19@gmail.com");
         empleado.setPerfil(new Perfil());
         empleado.setRolEmpleado(Enum_RoleName.valueOf("ADMIN")); //al crear el enum pidio este cambio
