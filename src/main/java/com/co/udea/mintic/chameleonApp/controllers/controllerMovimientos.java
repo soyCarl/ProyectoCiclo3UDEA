@@ -14,7 +14,7 @@ public class controllerMovimientos {
     @Autowired
     MovimientosServices movimientosServices;
 
-    @GetMapping("/movimientos")
+    @GetMapping("/movimientos") //muestra todos los movimientos
     public List<MovimientoDinero> verMovimientos(){
         return movimientosServices.getAllMovimientos();
     }
