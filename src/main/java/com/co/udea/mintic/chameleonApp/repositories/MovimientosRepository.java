@@ -17,4 +17,5 @@ public interface MovimientosRepository extends JpaRepository<MovimientoDinero, L
     //Metodo para filtrar movimientos por empresa
     @Query(value = "select * from movimientos where empleado_id in (select id from empleado where empresa_id= ?1)", nativeQuery = true)
     public abstract ArrayList<MovimientoDinero> findByEmpresa(Long id);
+
 }

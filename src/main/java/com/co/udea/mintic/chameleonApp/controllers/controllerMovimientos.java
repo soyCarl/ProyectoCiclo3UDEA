@@ -16,6 +16,7 @@ public class controllerMovimientos {
 
     @GetMapping("/movimientos")
     public List<MovimientoDinero> verMovimientos(){
+        System.out.println("entre al get:"+movimientosServices.getAllMovimientos());
         return movimientosServices.getAllMovimientos();
     }
 
@@ -59,5 +60,7 @@ public class controllerMovimientos {
     public ArrayList<MovimientoDinero> movimientosPorEmpresa(@PathVariable("id") Long id){
         return movimientosServices.obtenerPorEmpresa(id);
     }
+
+
 }
 

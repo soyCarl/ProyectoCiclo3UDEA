@@ -34,6 +34,7 @@ public class MovimientosServices {
         }
         return true;
     }
+
     public ArrayList<MovimientoDinero> obtenerPorEmpleado(Long id) {
         return movimientosRepository.findByEmpleado(id);
     }
@@ -41,4 +42,6 @@ public class MovimientosServices {
     public ArrayList<MovimientoDinero> obtenerPorEmpresa(Long id) {
         return movimientosRepository.findByEmpresa(id);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +14,7 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_empresa")
-    private long empresaId;
+    private Long empresaId;
 
     @Column(name = "nombre_empresa", unique = true)
     private String nombreEmpresa;
@@ -26,12 +28,10 @@ public class Empresa {
     @Column(name = "direccion_empresa")
     private String direccionEmpresa;
 
-    @OneToMany
-    @JoinColumn(name = "id_empleado")
+    @OneToMany (mappedBy = "empresa")
     private List<Empleado> empleado = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "id_movimiento_dinero")
+    @OneToMany (mappedBy = "empresa")
     private List<MovimientoDinero> movimientoDinero = new ArrayList<>();
 
     @Column(name = "fecha_creacion")
@@ -55,11 +55,11 @@ public class Empresa {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public long getEmpresaId() {
+    public Long getEmpresaId() {
         return empresaId;
     }
 
-    public void setEmpresaId(long empresaId) {
+    public void setEmpresaId(Long empresaId) {
         this.empresaId = empresaId;
     }
 

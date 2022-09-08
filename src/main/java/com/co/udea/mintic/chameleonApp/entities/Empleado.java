@@ -1,5 +1,7 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,8 +33,7 @@ public class Empleado {
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
-    @OneToMany
-    @JoinColumn(name = "id_movimiento_dinero")
+    @OneToMany (mappedBy = "empleado")
     private List<MovimientoDinero> movDinero = new ArrayList<>();
 
     @Column(name = "fecha_creacion")
@@ -143,4 +144,6 @@ public class Empleado {
                 ", fechaModificacion=" + fechaModificacion +
                 '}';
     }
+
+
 }

@@ -15,7 +15,7 @@ public class controllerEmpresa {
 
     @GetMapping("/empresa")
     public List<Empresa> verEmpresas() {
-        return empresaServices.getAllEmpresas();
+        return this.empresaServices.getAllEmpresas();
     }
 
     @PostMapping("/empresa")
