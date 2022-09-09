@@ -18,11 +18,11 @@ public class MovimientoDinero {
     private Float monto;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado")
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado")
     private Empleado empleado;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa")
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
     @Column(name = "fecha_creacion")
@@ -102,7 +102,7 @@ public class MovimientoDinero {
 
     @Override
     public String toString() {
-        return "MovimientoDinero{" +
+           return "MovimientoDinero{" +
                 "id=" + id +
                 ", concepto='" + concepto + '\'' +
                 ", monto=" + monto +

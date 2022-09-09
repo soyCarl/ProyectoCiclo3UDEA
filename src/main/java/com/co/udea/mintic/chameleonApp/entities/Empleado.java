@@ -30,10 +30,10 @@ public class Empleado {
     private Enum_RoleName rolEmpleado;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa")
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
-    @OneToMany (mappedBy = "empleado")
+    @OneToMany (targetEntity = MovimientoDinero.class)
     private List<MovimientoDinero> movDinero = new ArrayList<>();
 
     @Column(name = "fecha_creacion")

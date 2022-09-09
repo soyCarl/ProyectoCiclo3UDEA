@@ -60,7 +60,5 @@ public class controllerMovimientos {
     public ArrayList<MovimientoDinero> movimientosPorEmpresa(@PathVariable("id") Long id){
         return movimientosServices.obtenerPorEmpresa(id);
     }
-
-
 }
 
