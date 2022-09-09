@@ -28,10 +28,10 @@ public class Empresa {
     @Column(name = "direccion_empresa")
     private String direccionEmpresa;
 
-    @OneToMany (mappedBy = "empresa")
+    @OneToMany (targetEntity = Empresa.class)
     private List<Empleado> empleado = new ArrayList<>();
 
-    @OneToMany (mappedBy = "empresa")
+    @OneToMany (targetEntity = MovimientoDinero.class)
     private List<MovimientoDinero> movimientoDinero = new ArrayList<>();
 
     @Column(name = "fecha_creacion")
