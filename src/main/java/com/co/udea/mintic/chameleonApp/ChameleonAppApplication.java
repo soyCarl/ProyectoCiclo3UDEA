@@ -64,7 +64,7 @@ public class ChameleonAppApplication {
 
 		Empleado empleado = new Empleado();
 
-        empleado.setId(1l);
+        //empleado.setId(1l);
         empleado.setCorreoEmpleado("cdtobon19@gmail.com");
         empleado.setPerfil(new Perfil());
         empleado.setRolEmpleado(Enum_RoleName.valueOf("ADMIN")); //al crear el enum pidio este cambio
@@ -72,7 +72,7 @@ public class ChameleonAppApplication {
 		empleado.setMovDinero(new ArrayList<MovimientoDinero>());
 
 
-		System.out.println("Id empleado:"+empleado.getId());
+		//System.out.println("Id empleado:"+empleado.getId());
 		System.out.println("Correo empleado:"+empleado.getCorreoEmpleado());
 		System.out.println("Perfil empleado:"+empleado.getPerfil());
 		System.out.println("Rol empleado:"+empleado.getRolEmpleado());

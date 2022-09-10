@@ -1,7 +1,9 @@
 package com.co.udea.mintic.chameleonApp.controllers;
 
 import com.co.udea.mintic.chameleonApp.entities.Empleado;
+import com.co.udea.mintic.chameleonApp.entities.Empresa;
 import com.co.udea.mintic.chameleonApp.services.EmpleadoServices;
+import com.co.udea.mintic.chameleonApp.services.EmpresaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class controllerEmpleado {
     @Autowired
     EmpleadoServices empleadoServices;
+    EmpresaServices empresaServices;
 
     @GetMapping("/empleado")
     public List<Empleado> verEmpleados() {
@@ -35,7 +38,7 @@ public class controllerEmpleado {
         emp.setCorreoEmpleado(emple.getCorreoEmpleado());
         emp.setPerfil(emple.getPerfil());
         emp.setRolEmpleado(emple.getRolEmpleado());//Diego por favor revisar si en esta linea hay conflicto con haber creado el Enum de rolEmpleado
-        emp.setEmpresa(emple.getEmpresa());
+        emp.setEmpresa(empresaServices.getEmpresaById(emple.getEmpresa().getEmpresaId()));
         emp.setMovDinero(emple.getMovDinero());
         emp.setFechaCreacion(emple.getFechaCreacion());
         emp.setFechaModificacion(emple.getFechaModificacion());
@@ -52,30 +55,4 @@ public class controllerEmpleado {
         }
     }
 
-/*
-    @GetMapping("/empleado") //Ver json de todos los empleados
-    public String verEmpleados(){
-        return "Hola empleado desde Get";
-    }
-
-    @PostMapping("/empleado")
-    public String guardarEmpleado() {
-        return "Guardar Empleado";
-    }
-
-    @GetMapping(path = "empleado/{id}")
-    public String empleadoPorID(@PathVariable("id") Integer id) {
-        return "Hola empleado " + id;
-    }
-
-    @PatchMapping(path = "empleado/{id}")
-    public String actualizarEmpleado(@PathVariable("id") Integer id) {
-        return "empleado " + id + " modifcado";
-    }
-
-    @DeleteMapping(path = "empleado/{id}")
-    public String eliminarEmpleado(@PathVariable("id") Integer id) {
-        return "empleado " + id + " eliminado";
-    }
-*/
 }

@@ -1,6 +1,6 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,11 +29,11 @@ public class Empleado {
     @Column(name = "rol_empleado")
     private Enum_RoleName rolEmpleado;
 
-    @ManyToOne
-    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
+    @ManyToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
-    @OneToMany (targetEntity = MovimientoDinero.class)
+    @OneToMany (mappedBy = "empleado")
     private List<MovimientoDinero> movDinero = new ArrayList<>();
 
     @Column(name = "fecha_creacion")
@@ -46,8 +46,7 @@ public class Empleado {
 
     }
 
-    public Empleado(Long id, String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
-        this.id = id;
+    public Empleado(String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
         this.nombre = nombre;
         this.correoEmpleado = correoEmpleado;
         this.perfil = perfil;
@@ -61,10 +60,12 @@ public class Empleado {
     public Long getId() {
         return id;
     }
-
+/*
     public void setId(Long id) {
         this.id = id;
     }
+
+ */
 
     public String getNombre() {
         return nombre;
@@ -129,21 +130,5 @@ public class Empleado {
     public void setFechaModificacion(Date fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
-
-    @Override
-    public String toString() {
-        return "Empleado{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", correoEmpleado='" + correoEmpleado + '\'' +
-                ", perfil=" + perfil +
-                ", rolEmpleado=" + rolEmpleado +
-                ", empresa=" + empresa +
-                ", movDinero=" + movDinero +
-                ", fechaCreacion=" + fechaCreacion +
-                ", fechaModificacion=" + fechaModificacion +
-                '}';
-    }
-
 
 }

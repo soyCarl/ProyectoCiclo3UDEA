@@ -32,8 +32,7 @@ public class Perfil {
 
     }
 
-    public Perfil(Long id, Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
-        this.id = id;
+    public Perfil(Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
         this.imagen = imagen;
         this.telefono = telefono;
         this.empleado = empleado;
@@ -89,15 +88,4 @@ public class Perfil {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    @Override
-    public String toString() {
-        return "Perfil{" +
-                "id=" + id +
-                ", imagen=" + imagen +
-                ", telefono='" + telefono + '\'' +
-                ", empleado=" + empleado +
-                ", fechaCreacion=" + fechaCreacion +
-                ", fechaActualizacion=" + fechaActualizacion +
-                '}';
-    }
 }

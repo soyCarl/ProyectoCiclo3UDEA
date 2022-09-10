@@ -1,5 +1,9 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,11 +22,11 @@ public class MovimientoDinero {
     private Float monto;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado")
+    @JoinColumn(name = "id_empleado")
     private Empleado empleado;
 
     @ManyToOne
-    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa")
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
     @Column(name = "fecha_creacion")
@@ -34,8 +38,7 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(Long id, String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
-        this.id = id;
+    public MovimientoDinero(String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
         this.concepto = concepto;
         this.monto = monto;
         this.empleado = empleado;
@@ -47,11 +50,11 @@ public class MovimientoDinero {
     public Long getId() {
         return id;
     }
-
+/*
     public void setId(Long id) {
         this.id = id;
     }
-
+*/
     public String getConcepto() {
         return concepto;
     }
@@ -100,16 +103,4 @@ public class MovimientoDinero {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    @Override
-    public String toString() {
-           return "MovimientoDinero{" +
-                "id=" + id +
-                ", concepto='" + concepto + '\'' +
-                ", monto=" + monto +
-                ", empleado=" + empleado +
-                ", empresa=" + empresa +
-                ", fechaCreacion=" + fechaCreacion +
-                ", fechaActualizacion=" + fechaActualizacion +
-                '}';
-    }
 }

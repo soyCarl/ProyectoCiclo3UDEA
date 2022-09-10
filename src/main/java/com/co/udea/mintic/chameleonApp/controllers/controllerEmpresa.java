@@ -28,7 +28,7 @@ public class controllerEmpresa {
         return this.empresaServices.getEmpresaById(id);
     }
 
-    @PatchMapping("/empresa/{id}")
+    @PatchMapping(value = "/empresa/{id}")
     public Empresa actualizarEmpresa(@PathVariable("id") Long id, @RequestBody Empresa empre) {
         Empresa empr = empresaServices.getEmpresaById(id);
         empr.setNombreEmpresa(empre.getNombreEmpresa());
@@ -51,31 +51,5 @@ public class controllerEmpresa {
             return "No se pudo eliminar la empresa con id" + id;
         }
     }
-    /*
-    @GetMapping("/empresa")
-    public String verEmpresas() {
-        return "Hola empresas desde Get";
-    }
 
-    @PostMapping("/empresa")
-    public String guardarEmpresas(){
-        return "Guardar empresa desde Post";
-    }
-
-    @GetMapping(path = "/empresa/buscar/{id}")
-    public Empresa buscarEmpresa(){
-        Empresa empresa = new Empresa(1, "ChameleonDevs", "12345-7", "33377712", "Avenida 5", null, null, new Date(), new Date());
-        return empresa;
-    }
-
-    @PatchMapping(path = "/empresa/actualizar/{id}")
-    public String actualizarEmpresa(){
-        return "Actualizando empresa con el id";
-    }
-
-    @DeleteMapping(path = "/empresa/borrrar/{id}")
-    public String borrarEmpresa(){
-        return "Borrando empresa con el id";
-    }
-     */
 }
