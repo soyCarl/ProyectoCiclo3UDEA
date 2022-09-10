@@ -1,12 +1,15 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "empleado")
 public class Empleado {
@@ -29,11 +32,12 @@ public class Empleado {
     @Column(name = "rol_empleado")
     private Enum_RoleName rolEmpleado;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
-    @OneToMany (mappedBy = "empleado")
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "empleado")
+    @JsonIgnore
     private List<MovimientoDinero> movDinero = new ArrayList<>();
 
     @Column(name = "fecha_creacion")
@@ -46,7 +50,8 @@ public class Empleado {
 
     }
 
-    public Empleado(String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+    public Empleado(Long id, String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+        this.id = id;
         this.nombre = nombre;
         this.correoEmpleado = correoEmpleado;
         this.perfil = perfil;
@@ -60,12 +65,10 @@ public class Empleado {
     public Long getId() {
         return id;
     }
-/*
+
     public void setId(Long id) {
         this.id = id;
     }
-
- */
 
     public String getNombre() {
         return nombre;
@@ -130,5 +133,21 @@ public class Empleado {
     public void setFechaModificacion(Date fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correoEmpleado='" + correoEmpleado + '\'' +
+                ", perfil=" + perfil +
+                ", rolEmpleado=" + rolEmpleado +
+                ", empresa=" + empresa +
+                ", movDinero=" + movDinero +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaModificacion=" + fechaModificacion +
+                '}';
+    }
+
 
 }

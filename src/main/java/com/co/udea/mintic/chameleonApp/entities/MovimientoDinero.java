@@ -1,9 +1,5 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,8 +17,8 @@ public class MovimientoDinero {
     @Column(name = "monto")
     private Float monto;
 
-    @ManyToOne
-    @JoinColumn(name = "id_empleado")
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "id_empleado", nullable = true)
     private Empleado empleado;
 
     @ManyToOne
@@ -38,7 +34,8 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
+    public MovimientoDinero(Long id, String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
+        this.id = id;
         this.concepto = concepto;
         this.monto = monto;
         this.empleado = empleado;
@@ -50,11 +47,11 @@ public class MovimientoDinero {
     public Long getId() {
         return id;
     }
-/*
+
     public void setId(Long id) {
         this.id = id;
     }
-*/
+
     public String getConcepto() {
         return concepto;
     }
@@ -103,4 +100,16 @@ public class MovimientoDinero {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    @Override
+    public String toString() {
+        return "MovimientoDinero{" +
+                "id=" + id +
+                ", concepto='" + concepto + '\'' +
+                ", monto=" + monto +
+                ", empleado=" + empleado +
+                ", empresa=" + empresa +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizacion=" + fechaActualizacion +
+                '}';
+    }
 }

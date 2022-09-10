@@ -8,7 +8,7 @@ import java.util.Date;
 @Table(name = "perfil")
 public class Perfil {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//El id debe se tipo string y no autoincrementado
     @Column(name = "id_perfil")
     private Long id;
 
@@ -32,7 +32,8 @@ public class Perfil {
 
     }
 
-    public Perfil(Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+    public Perfil(Long id, Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+        this.id = id;
         this.imagen = imagen;
         this.telefono = telefono;
         this.empleado = empleado;
@@ -88,4 +89,16 @@ public class Perfil {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+
+    @Override
+    public String toString() {
+        return "Perfil{" +
+                "id=" + id +
+                ", imagen=" + imagen +
+                ", telefono='" + telefono + '\'' +
+                ", empleado=" + empleado +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizacion=" + fechaActualizacion +
+                '}';
+    }
 }

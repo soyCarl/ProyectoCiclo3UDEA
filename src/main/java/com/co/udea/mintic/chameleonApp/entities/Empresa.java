@@ -1,9 +1,6 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -46,7 +43,8 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(String nombreEmpresa, String nitEmpresa, String telefonoEmpresa, String direccionEmpresa, List<Empleado> empleado, List<MovimientoDinero> movimientoDinero, Date fechaCreacion, Date fechaActualizacion) {
+    public Empresa(long empresaId, String nombreEmpresa, String nitEmpresa, String telefonoEmpresa, String direccionEmpresa, List<Empleado> empleado, List<MovimientoDinero> movimientoDinero, Date fechaCreacion, Date fechaActualizacion) {
+        this.empresaId = empresaId;
         this.nombreEmpresa = nombreEmpresa;
         this.nitEmpresa = nitEmpresa;
         this.telefonoEmpresa = telefonoEmpresa;
@@ -60,12 +58,11 @@ public class Empresa {
     public Long getEmpresaId() {
         return empresaId;
     }
-    /*
-        public void setEmpresaId(Long empresaId) {
-            this.empresaId = empresaId;
-        }
 
-     */
+    public void setEmpresaId(Long empresaId) {
+        this.empresaId = empresaId;
+    }
+
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }
@@ -130,4 +127,18 @@ public class Empresa {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "empresaId=" + empresaId +
+                ", nombreEmpresa='" + nombreEmpresa + '\'' +
+                ", nitEmpresa='" + nitEmpresa + '\'' +
+                ", telefonoEmpresa='" + telefonoEmpresa + '\'' +
+                ", direccionEmpresa='" + direccionEmpresa + '\'' +
+                ", empleado=" + empleado +
+                ", movimientoDinero=" + movimientoDinero +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizacion=" + fechaActualizacion +
+                '}';
+    }
 }
