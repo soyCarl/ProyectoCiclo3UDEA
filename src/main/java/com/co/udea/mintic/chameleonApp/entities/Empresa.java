@@ -11,12 +11,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="empresa")
+@Table(name = "empresa")
 public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_empresa")
+    @Column(name = "id_empresa")
     private Long empresaId;
 
     @Column(name = "nombre_empresa", unique = true)
@@ -31,11 +31,12 @@ public class Empresa {
     @Column(name = "direccion_empresa")
     private String direccionEmpresa;
 
-    @OneToMany (mappedBy = "empresa")
-    private List<Empleado> empleado = new ArrayList<>();
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Empleado> empleado;
 
-    @OneToMany (mappedBy = "empresa")
-    private List<MovimientoDinero> movimientoDinero = new ArrayList<>();
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<MovimientoDinero> movimientoDinero;
 
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
@@ -46,7 +47,8 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(String nombreEmpresa, String nitEmpresa, String telefonoEmpresa, String direccionEmpresa, List<Empleado> empleado, List<MovimientoDinero> movimientoDinero, Date fechaCreacion, Date fechaActualizacion) {
+    public Empresa(Long empresaId, String nombreEmpresa, String nitEmpresa, String telefonoEmpresa, String direccionEmpresa, List<Empleado> empleado, List<MovimientoDinero> movimientoDinero, Date fechaCreacion, Date fechaActualizacion) {
+        this.empresaId = empresaId;
         this.nombreEmpresa = nombreEmpresa;
         this.nitEmpresa = nitEmpresa;
         this.telefonoEmpresa = telefonoEmpresa;
@@ -60,12 +62,11 @@ public class Empresa {
     public Long getEmpresaId() {
         return empresaId;
     }
-    /*
-        public void setEmpresaId(Long empresaId) {
-            this.empresaId = empresaId;
-        }
 
-     */
+    public void setEmpresaId(Long empresaId) {
+        this.empresaId = empresaId;
+    }
+
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }
@@ -98,6 +99,7 @@ public class Empresa {
         this.direccionEmpresa = direccionEmpresa;
     }
 
+    @JsonManagedReference
     public List<Empleado> getEmpleado() {
         return empleado;
     }
@@ -106,6 +108,7 @@ public class Empresa {
         this.empleado = empleado;
     }
 
+    @JsonManagedReference
     public List<MovimientoDinero> getMovimientoDinero() {
         return movimientoDinero;
     }

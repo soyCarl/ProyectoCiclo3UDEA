@@ -29,12 +29,14 @@ public class Empleado {
     @Column(name = "rol_empleado")
     private Enum_RoleName rolEmpleado;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+
+    @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
-    @OneToMany (mappedBy = "empleado")
-    private List<MovimientoDinero> movDinero = new ArrayList<>();
+
+    @OneToMany (mappedBy = "empleado", cascade = CascadeType.ALL)
+    private List<MovimientoDinero> movDinero;
 
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
@@ -60,12 +62,11 @@ public class Empleado {
     public Long getId() {
         return id;
     }
-/*
+
     public void setId(Long id) {
         this.id = id;
     }
 
- */
 
     public String getNombre() {
         return nombre;
@@ -99,6 +100,7 @@ public class Empleado {
         this.rolEmpleado = rolEmpleado;
     }
 
+    @JsonBackReference
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -107,6 +109,7 @@ public class Empleado {
         this.empresa = empresa;
     }
 
+    @JsonManagedReference
     public List<MovimientoDinero> getMovDinero() {
         return movDinero;
     }

@@ -2,13 +2,14 @@ package com.co.udea.mintic.chameleonApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="movimiento_dinero")
+@Table(name = "movimiento_dinero")
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +22,11 @@ public class MovimientoDinero {
     @Column(name = "monto")
     private Float monto;
 
+
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleado;
+
 
     @ManyToOne
     @JoinColumn(name = "id_empresa")
@@ -50,11 +53,11 @@ public class MovimientoDinero {
     public Long getId() {
         return id;
     }
-/*
+
     public void setId(Long id) {
         this.id = id;
     }
-*/
+
     public String getConcepto() {
         return concepto;
     }
@@ -71,6 +74,7 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
+    @JsonBackReference
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -79,6 +83,7 @@ public class MovimientoDinero {
         this.empleado = empleado;
     }
 
+    @JsonBackReference
     public Empresa getEmpresa() {
         return empresa;
     }

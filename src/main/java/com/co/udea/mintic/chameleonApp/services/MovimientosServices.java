@@ -36,10 +36,12 @@ public class MovimientosServices {
     }
 
     public ArrayList<MovimientoDinero> obtenerPorEmpleado(Long id) {
+        System.out.println("id empleado para mov"+ id);
         return movimientosRepository.findByEmpleado(id);
     }
 
     public ArrayList<MovimientoDinero> obtenerPorEmpresa(Long id) {
+        System.out.println("id empresa para mov"+ id);
         return movimientosRepository.findByEmpresa(id);
     }
 

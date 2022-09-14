@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public interface MovimientosRepository extends JpaRepository<MovimientoDinero, Long> {
 
     //Metodo para filtrar movimientos por empleado
-    @Query(value = "select * from movimiento_dinero where id_empleado= ?1", nativeQuery = true)
+    @Query(value = "select * from movimiento_dinero where id_empleado= ?", nativeQuery = true)
     public abstract ArrayList<MovimientoDinero> findByEmpleado(Long id);
 
     //Metodo para filtrar movimientos por empresa
-    @Query(value = "select * from movimiento_dinero where id_empleado in (select id from empleado where id_empresa= ?1)", nativeQuery = true)
+    @Query(value = "select * from movimiento_dinero where id_empresa= ?", nativeQuery = true)
     public abstract ArrayList<MovimientoDinero> findByEmpresa(Long id);
 
 }

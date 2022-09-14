@@ -14,7 +14,6 @@ import java.util.List;
 public class controllerEmpleado {
     @Autowired
     EmpleadoServices empleadoServices;
-    EmpresaServices empresaServices;
 
     @GetMapping("/empleado")
     public List<Empleado> verEmpleados() {
@@ -38,7 +37,7 @@ public class controllerEmpleado {
         emp.setCorreoEmpleado(emple.getCorreoEmpleado());
         emp.setPerfil(emple.getPerfil());
         emp.setRolEmpleado(emple.getRolEmpleado());//Diego por favor revisar si en esta linea hay conflicto con haber creado el Enum de rolEmpleado
-        emp.setEmpresa(empresaServices.getEmpresaById(emple.getEmpresa().getEmpresaId()));
+        emp.setEmpresa(emple.getEmpresa());
         emp.setMovDinero(emple.getMovDinero());
         emp.setFechaCreacion(emple.getFechaCreacion());
         emp.setFechaModificacion(emple.getFechaModificacion());
