@@ -130,4 +130,18 @@ public class Empresa {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "empresaId=" + empresaId +
+                ", nombreEmpresa='" + nombreEmpresa + '\'' +
+                ", nitEmpresa='" + nitEmpresa + '\'' +
+                ", telefonoEmpresa='" + telefonoEmpresa + '\'' +
+                ", direccionEmpresa='" + direccionEmpresa + '\'' +
+                ", empleado=" + empleado +
+                ", movimientoDinero=" + movimientoDinero +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizacion=" + fechaActualizacion +
+                '}';
+    }
 }

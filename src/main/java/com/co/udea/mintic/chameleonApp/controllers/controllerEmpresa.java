@@ -32,13 +32,14 @@ public class controllerEmpresa {
     public Empresa actualizarEmpresa(@PathVariable("id") Long id, @RequestBody Empresa empre) {
         Empresa empr = empresaServices.getEmpresaById(id);
         empr.setNombreEmpresa(empre.getNombreEmpresa());
-        empr.setNitEmpresa(empr.getNitEmpresa());
-        empr.setTelefonoEmpresa(empr.getTelefonoEmpresa());
-        empr.setDireccionEmpresa(empr.getDireccionEmpresa());
-        empr.setEmpleado(empr.getEmpleado());
-        empr.setMovimientoDinero(empr.getMovimientoDinero());
-        empr.setFechaCreacion(empr.getFechaCreacion());
-        empr.setFechaActualizacion(empr.getFechaActualizacion());
+        empr.setNitEmpresa(empre.getNitEmpresa());
+        empr.setTelefonoEmpresa(empre.getTelefonoEmpresa());
+        empr.setDireccionEmpresa(empre.getDireccionEmpresa());
+        empr.setEmpleado(empre.getEmpleado());
+        empr.setMovimientoDinero(empre.getMovimientoDinero());
+        empr.setFechaCreacion(empre.getFechaCreacion());
+        empr.setFechaActualizacion(empre.getFechaActualizacion());
+        System.out.println("id empresa:"+ id + "empresa para actualizar:"+ empr.getTelefonoEmpresa());
         return empresaServices.saveOrUpdateEmpresa(empr);
     }
 
