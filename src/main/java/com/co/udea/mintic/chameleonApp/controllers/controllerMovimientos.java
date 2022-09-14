@@ -51,12 +51,12 @@ public class controllerMovimientos {
         return "No se pudo eliminar el movimiento con id "+id;
     }
 
-    @GetMapping("/empleados/{id}/movimientos") //Consultar movimientos por id del empleado
+    @GetMapping("/empleado/{id}/movimientos") //Consultar movimientos por id del empleado
     public ArrayList<MovimientoDinero> movimientosPorEmpleado(@PathVariable("id") Long id){
         return movimientosServices.obtenerPorEmpleado(id);
     }
 
-    @GetMapping("/enterprises/{id}/movimientos") //Consultar movimientos que pertenecen a una empresa por el id de la empresa
+    @GetMapping("/empresa/{id}/movimientos") //Consultar movimientos que pertenecen a una empresa por el id de la empresa
     public ArrayList<MovimientoDinero> movimientosPorEmpresa(@PathVariable("id") Long id){
         return movimientosServices.obtenerPorEmpresa(id);
     }

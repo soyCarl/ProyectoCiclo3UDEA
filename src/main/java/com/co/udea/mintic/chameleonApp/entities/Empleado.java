@@ -3,7 +3,6 @@ package com.co.udea.mintic.chameleonApp.entities;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empleado")
-    private Long id;
+    private Long empleadoId;
 
     @Column(name = "nombre")
     private String nombre;
@@ -34,7 +33,7 @@ public class Empleado {
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
-
+    @JsonIgnore
     @OneToMany (mappedBy = "empleado", cascade = CascadeType.ALL)
     private List<MovimientoDinero> movDinero;
 
@@ -48,7 +47,8 @@ public class Empleado {
 
     }
 
-    public Empleado(String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+    public Empleado(Long empleadoId, String nombre, String correoEmpleado, Perfil perfil, Enum_RoleName rolEmpleado, Empresa empresa, List<MovimientoDinero> movDinero, Date fechaCreacion, Date fechaModificacion) {
+        this.empleadoId = empleadoId;
         this.nombre = nombre;
         this.correoEmpleado = correoEmpleado;
         this.perfil = perfil;
@@ -60,11 +60,11 @@ public class Empleado {
     }
 
     public Long getId() {
-        return id;
+        return empleadoId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long empleadoId) {
+        this.empleadoId = empleadoId;
     }
 
 
@@ -100,7 +100,7 @@ public class Empleado {
         this.rolEmpleado = rolEmpleado;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -109,7 +109,7 @@ public class Empleado {
         this.empresa = empresa;
     }
 
-    @JsonManagedReference
+    //@JsonManagedReference
     public List<MovimientoDinero> getMovDinero() {
         return movDinero;
     }

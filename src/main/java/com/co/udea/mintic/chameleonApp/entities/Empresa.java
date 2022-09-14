@@ -1,12 +1,8 @@
 package com.co.udea.mintic.chameleonApp.entities;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,10 +27,11 @@ public class Empresa {
     @Column(name = "direccion_empresa")
     private String direccionEmpresa;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<Empleado> empleado;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientoDinero;
 
@@ -99,7 +96,7 @@ public class Empresa {
         this.direccionEmpresa = direccionEmpresa;
     }
 
-    @JsonManagedReference
+    //@JsonManagedReference
     public List<Empleado> getEmpleado() {
         return empleado;
     }
@@ -108,7 +105,7 @@ public class Empresa {
         this.empleado = empleado;
     }
 
-    @JsonManagedReference
+    //@JsonManagedReference
     public List<MovimientoDinero> getMovimientoDinero() {
         return movimientoDinero;
     }

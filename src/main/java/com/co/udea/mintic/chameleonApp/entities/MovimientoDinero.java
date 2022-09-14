@@ -14,7 +14,7 @@ public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_movimiento_dinero")
-    private Long id;
+    private Long movDineroId;
 
     @Column(name = "concepto")
     private String concepto;
@@ -22,11 +22,9 @@ public class MovimientoDinero {
     @Column(name = "monto")
     private Float monto;
 
-
     @ManyToOne
     @JoinColumn(name = "id_empleado")
     private Empleado empleado;
-
 
     @ManyToOne
     @JoinColumn(name = "id_empresa")
@@ -41,7 +39,7 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
+    public MovimientoDinero(Long movDineroId, String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
         this.concepto = concepto;
         this.monto = monto;
         this.empleado = empleado;
@@ -51,11 +49,11 @@ public class MovimientoDinero {
     }
 
     public Long getId() {
-        return id;
+        return movDineroId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long movDineroId) {
+        this.movDineroId = movDineroId;
     }
 
     public String getConcepto() {
@@ -74,7 +72,7 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -83,7 +81,7 @@ public class MovimientoDinero {
         this.empleado = empleado;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public Empresa getEmpresa() {
         return empresa;
     }
