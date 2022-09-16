@@ -3,54 +3,64 @@ package com.co.udea.mintic.chameleonApp.controllers;
 import com.co.udea.mintic.chameleonApp.entities.Empresa;
 import com.co.udea.mintic.chameleonApp.services.EmpresaServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController
-//@RequestMapping("/")
+@Controller
 public class controllerEmpresa {
     @Autowired
     EmpresaServices empresaServices;
 
-    @GetMapping("/empresa")
-    public List<Empresa> verEmpresas() {
-        return this.empresaServices.getAllEmpresas();
+    @GetMapping("/VerEmpresas")
+    public String verEmpresas(Model model, @ModelAttribute("mensaje") String mensaje) {
+        List<Empresa> listaEmpresas = empresaServices.getAllEmpresas();
+        model.addAttribute("emplist", listaEmpresas);
+        model.addAttribute("mensaje", mensaje);
+        return "verEmpresas"; //Llamamos al HTML
     }
 
-    @PostMapping("/empresa")
-    public Empresa guardarEmpresa(@RequestBody Empresa empre) {
-        return this.empresaServices.saveOrUpdateEmpresa(empre);
+    @PostMapping("/AgregarEmpresa")
+    public String addEmpresa(Model model, @ModelAttribute("mensaje") String mensaje) {
+        Empresa emp = new Empresa();
+        model.addAttribute("emp", emp);
+        model.addAttribute("mensaje", mensaje);
+        return "agregarEmpresa";
     }
 
-    @GetMapping(path = "/empresa/{id}")
-    public Empresa empresaPorID(@PathVariable("id") Long id) {
-        return this.empresaServices.getEmpresaById(id);
+    @GetMapping("/EditarEmpresa/{id}")
+    public String editarEmpresa(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
+        Empresa emp = empresaServices.getEmpresaById(id);
+        //Creamos un atributo para el modelo, que se llame igualmente emp y es el que ira al html para llenar o alimentar campos
+        model.addAttribute("emp", emp);
+        model.addAttribute("mensaje", mensaje);
+        return "editarEmpresa";
     }
 
-    @PatchMapping(value = "/empresa/{id}")
-    public Empresa actualizarEmpresa(@PathVariable("id") Long id, @RequestBody Empresa empre) {
-        Empresa empr = empresaServices.getEmpresaById(id);
-        empr.setNombreEmpresa(empre.getNombreEmpresa());
-        empr.setNitEmpresa(empre.getNitEmpresa());
-        empr.setTelefonoEmpresa(empre.getTelefonoEmpresa());
-        empr.setDireccionEmpresa(empre.getDireccionEmpresa());
-        empr.setEmpleado(empre.getEmpleado());
-        empr.setMovimientoDinero(empre.getMovimientoDinero());
-        empr.setFechaCreacion(empre.getFechaCreacion());
-        empr.setFechaActualizacion(empre.getFechaActualizacion());
-        System.out.println("id empresa:"+ id + "empresa para actualizar:"+ empr.getTelefonoEmpresa());
-        return empresaServices.saveOrUpdateEmpresa(empr);
-    }
 
-    @DeleteMapping(path = "empresa/{id}")
-    public String DeleteEmpresa(@PathVariable("id") Long id) {
-        boolean respuesta = this.empresaServices.deleteEmpresa(id);
-        if (respuesta) {
-            return "Se eliminó la empresa con id" + id;
-        } else {
-            return "No se pudo eliminar la empresa con id" + id;
+    @PostMapping("/ActualizarEmpresa")
+    public String updateEmpresa(@ModelAttribute("emp") Empresa emp, RedirectAttributes redirectAttributes) {
+        if (empresaServices.saveOrUpdateEmpresa(emp)) {
+            redirectAttributes.addFlashAttribute("mensaje", "updateOK");
+            return "redirect:/VerEmpresas";
         }
+        redirectAttributes.addFlashAttribute("mensaje", "updateError");
+        return "redirect:/EditarEmpresa";
+
     }
+
+    @GetMapping("/EliminarEmpresa/{id}")
+    public String eliminarEmpresa(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (empresaServices.deleteEmpresa(id) == true) {
+            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
+            return "redirect:/VerEmpresas";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
+        return "redirect:/VerEmpresas";
+    }
+
 
 }

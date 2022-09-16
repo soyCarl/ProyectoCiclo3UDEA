@@ -24,9 +24,17 @@ public class EmpresaServices {
         return empresaRepository.findById(id).get();
     }
 
-    public Empresa saveOrUpdateEmpresa(Empresa empresa) {
+    public Empresa saveOrUpdateEmpresaRest(Empresa empresa) {
         Empresa emp = empresaRepository.save(empresa);
         return emp;
+    }
+
+    public boolean saveOrUpdateEmpresa(Empresa empresa) {
+        Empresa emp = empresaRepository.save(empresa);
+        if(empresaRepository.findById(empresa.getEmpresaId())!=null){
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteEmpresa(Long id) {

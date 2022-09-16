@@ -1,9 +1,12 @@
 package com.co.udea.mintic.chameleonApp.controllers;
 
+import com.co.udea.mintic.chameleonApp.entities.Empresa;
 import com.co.udea.mintic.chameleonApp.entities.MovimientoDinero;
 import com.co.udea.mintic.chameleonApp.services.MovimientosServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,51 +17,51 @@ public class controllerMovimientos {
     @Autowired
     MovimientosServices movimientosServices;
 
-    @GetMapping("/movimientos") 
-    public List<MovimientoDinero> verMovimientos(){
-        System.out.println("entre al get:"+movimientosServices.getAllMovimientos());
-        return movimientosServices.getAllMovimientos();
+    @GetMapping("/VerMovimientos")
+    public String verMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) {
+        List<MovimientoDinero> listaMov = movimientosServices.getAllMovimientos();
+        model.addAttribute("emplist", listaMov);
+        model.addAttribute("mensaje", mensaje);
+        return "verMovimientos"; //Llamamos al HTML
     }
 
-    @PostMapping("/movimientos")
-    public MovimientoDinero guardarMovimiento(@RequestBody MovimientoDinero movimiento){
-        return movimientosServices.saveOrUpdateMovimiento(movimiento);
+    @PostMapping("/AgregarMovimientos")
+    public String addMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) {
+        MovimientoDinero mov = new MovimientoDinero();
+        model.addAttribute("emp", mov);
+        model.addAttribute("mensaje", mensaje);
+        return "agregarMovimiento";
     }
 
-    @GetMapping("/movimientos/{id}")
-    public MovimientoDinero movimientoPorId(@PathVariable("id") Long id){
-        return movimientosServices.getMovimientoById(id);
+    @GetMapping("/EditarMovimiento/{id}")
+    public String editarMovimiento(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
+        MovimientoDinero mov = movimientosServices.getMovimientoById(id);
+        model.addAttribute("emp", mov);
+        model.addAttribute("mensaje", mensaje);
+        return "editarMovimientos";
     }
 
-    @PatchMapping("/movimientos/{id}")//Editar o actualizar un movimiento
-    public MovimientoDinero actualizarMovimiento(@PathVariable("id") Long id, @RequestBody MovimientoDinero movimiento){
-        MovimientoDinero mov=movimientosServices.getMovimientoById(id);
-        mov.setConcepto(movimiento.getConcepto());
-        mov.setMonto(movimiento.getMonto());
-        mov.setEmpleado(movimiento.getEmpleado());
-        mov.setEmpresa(movimiento.getEmpresa());
-        mov.setFechaCreacion(movimiento.getFechaCreacion());
-        mov.setFechaActualizacion(movimiento.getFechaActualizacion());
-        return movimientosServices.saveOrUpdateMovimiento(mov);
-    }
 
-    @DeleteMapping("/movimientos/{id}")
-    public String deleteMovimiento(@PathVariable("id") Long id){
-        boolean respuesta= movimientosServices.deleteMovimiento(id);
-        if (respuesta){
-            return "Se elimino correctamente el movimiento con id " +id;
+    @PostMapping("/ActualizarMovimientos")
+    public String updateMovimiento(@ModelAttribute("emp") MovimientoDinero mov, RedirectAttributes redirectAttributes) {
+        if (movimientosServices.saveOrUpdateMovimiento(mov)) {
+            redirectAttributes.addFlashAttribute("mensaje", "updateOK");
+            return "redirect:/VerMovimientos";
         }
-        return "No se pudo eliminar el movimiento con id "+id;
+        redirectAttributes.addFlashAttribute("mensaje", "updateError");
+        return "redirect:/EditarMovimiento";
+
     }
 
-    @GetMapping("/empleado/{id}/movimientos") //Consultar movimientos por id del empleado
-    public ArrayList<MovimientoDinero> movimientosPorEmpleado(@PathVariable("id") Long id){
-        return movimientosServices.obtenerPorEmpleado(id);
+    @GetMapping("/EliminarMovimiento/{id}")
+    public String eliminarMovimiento(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (movimientosServices.deleteMovimiento(id) == true) {
+            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
+            return "redirect:/VerMovimientos";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
+        return "redirect:/VerMovimientos";
     }
 
-    @GetMapping("/empresa/{id}/movimientos") //Consultar movimientos que pertenecen a una empresa por el id de la empresa
-    public ArrayList<MovimientoDinero> movimientosPorEmpresa(@PathVariable("id") Long id){
-        return movimientosServices.obtenerPorEmpresa(id);
-    }
 }
 

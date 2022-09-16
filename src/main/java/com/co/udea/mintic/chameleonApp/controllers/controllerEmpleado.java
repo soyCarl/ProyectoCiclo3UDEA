@@ -3,55 +3,62 @@ package com.co.udea.mintic.chameleonApp.controllers;
 import com.co.udea.mintic.chameleonApp.entities.Empleado;
 import com.co.udea.mintic.chameleonApp.entities.Empresa;
 import com.co.udea.mintic.chameleonApp.services.EmpleadoServices;
-import com.co.udea.mintic.chameleonApp.services.EmpresaServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController
-//@RequestMapping("/")
+@Controller
 public class controllerEmpleado {
     @Autowired
     EmpleadoServices empleadoServices;
 
-    @GetMapping("/empleado")
-    public List<Empleado> verEmpleados() {
-        return empleadoServices.getAllEmpleados();
+    @GetMapping("/VerEmpleado")
+    public String verEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
+        List<Empleado> listaEmpleado = empleadoServices.getAllEmpleados();
+        model.addAttribute("emplist", listaEmpleado);
+        model.addAttribute("mensaje", mensaje);
+        return "verEmpleado"; //Llamamos al HTML
     }
 
-    @PostMapping("/empleado")
-    public Empleado guardarEmpleado(@RequestBody Empleado emple) {
-        return this.empleadoServices.saveOrUpdateEmpleado(emple);
+    @PostMapping("/AgregarEmpleado")
+    public String addEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
+        Empleado emple = new Empleado();
+        model.addAttribute("emp", emple);
+        model.addAttribute("mensaje", mensaje);
+        return "agregarEmpleado";
     }
 
-    @GetMapping(path = "/empleado/{id}")
-    public Empleado empleadoPorID(@PathVariable("id") Long id) {
-        return this.empleadoServices.getEmpleadoById(id);
+    @GetMapping("/EditarEmpleado/{id}")
+    public String editarEmpleado(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
+        Empleado emple = empleadoServices.getEmpleadoById(id);
+        model.addAttribute("emple", emple);
+        model.addAttribute("mensaje", mensaje);
+        return "editarEmpleado";
     }
 
-    @PatchMapping("/empleado/{id}")
-    public Empleado actualizarEmpleado(@PathVariable("id") Long id, @RequestBody Empleado emple) {
-        Empleado emp = empleadoServices.getEmpleadoById(id);
-        emp.setNombre(emple.getNombre());
-        emp.setCorreoEmpleado(emple.getCorreoEmpleado());
-        emp.setPerfil(emple.getPerfil());
-        emp.setRolEmpleado(emple.getRolEmpleado());//Diego por favor revisar si en esta linea hay conflicto con haber creado el Enum de rolEmpleado
-        emp.setEmpresa(emple.getEmpresa());
-        emp.setMovDinero(emple.getMovDinero());
-        emp.setFechaCreacion(emple.getFechaCreacion());
-        emp.setFechaModificacion(emple.getFechaModificacion());
-        return empleadoServices.saveOrUpdateEmpleado(emp);
-    }
-
-    @DeleteMapping(path = "empleado/{id}")
-    public String DeleteEmpleado(@PathVariable("id") Long id) {
-        boolean respuesta = this.empleadoServices.deleteEmpleado(id);
-        if (respuesta) {
-            return "Se eliminó el empleado con id" + id;
-        } else {
-            return "No se pudo eliminar el empleado con id" + id;
+    @PostMapping("/ActualizarEmpleado")
+    public String updateEmpleado(@ModelAttribute("emp") Empleado emple, RedirectAttributes redirectAttributes) {
+        if (empleadoServices.saveOrUpdateEmpleado(emple)) {
+            redirectAttributes.addFlashAttribute("mensaje", "updateOK");
+            return "redirect:/VerEmpleado";
         }
+        redirectAttributes.addFlashAttribute("mensaje", "updateError");
+        return "redirect:/EditarEmpleado";
+
+    }
+
+    @GetMapping("/EliminarEmpleado/{id}")
+    public String eliminarEmpleado(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (empleadoServices.deleteEmpleado(id) == true) {
+            redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
+            return "redirect:/VerEmpleado";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
+        return "redirect:/VerEmpleado";
     }
 
 }

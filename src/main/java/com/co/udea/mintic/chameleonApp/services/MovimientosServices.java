@@ -23,10 +23,19 @@ public class MovimientosServices {
         return movimientosRepository.findById(id).get();
     }
 
-    public MovimientoDinero saveOrUpdateMovimiento(MovimientoDinero movimientoDinero) {
+    public MovimientoDinero saveOrUpdateMovimientoRest(MovimientoDinero movimientoDinero) {
         MovimientoDinero mov = movimientosRepository.save(movimientoDinero);
         return mov;
     }
+
+    public boolean saveOrUpdateMovimiento(MovimientoDinero movimientoDinero) {
+        MovimientoDinero mov = movimientosRepository.save(movimientoDinero);
+        if (movimientosRepository.findById(mov.getId()) != null) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean deleteMovimiento(Long id) {
         movimientosRepository.deleteById(id);
         if (this.movimientosRepository.findById(id).isPresent()) {
@@ -36,12 +45,12 @@ public class MovimientosServices {
     }
 
     public ArrayList<MovimientoDinero> obtenerPorEmpleado(Long id) {
-        System.out.println("id empleado para mov"+ id);
+        System.out.println("id empleado para mov" + id);
         return movimientosRepository.findByEmpleado(id);
     }
 
     public ArrayList<MovimientoDinero> obtenerPorEmpresa(Long id) {
-        System.out.println("id empresa para mov"+ id);
+        System.out.println("id empresa para mov" + id);
         return movimientosRepository.findByEmpresa(id);
     }
 
