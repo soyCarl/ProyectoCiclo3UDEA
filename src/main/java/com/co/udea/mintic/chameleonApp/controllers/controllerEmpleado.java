@@ -16,20 +16,31 @@ public class controllerEmpleado {
     @Autowired
     EmpleadoServices empleadoServices;
 
-    @GetMapping("/VerEmpleado")
+    @GetMapping("/VerEmpleados")
     public String verEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
         List<Empleado> listaEmpleado = empleadoServices.getAllEmpleados();
-        model.addAttribute("emplist", listaEmpleado);
+        model.addAttribute("emplelist", listaEmpleado);
         model.addAttribute("mensaje", mensaje);
         return "verEmpleado"; //Llamamos al HTML
     }
 
-    @PostMapping("/AgregarEmpleado")
+    @GetMapping("/AgregarEmpleado")
     public String addEmpleado(Model model, @ModelAttribute("mensaje") String mensaje) {
         Empleado emple = new Empleado();
-        model.addAttribute("emp", emple);
+        model.addAttribute("emple", emple);
         model.addAttribute("mensaje", mensaje);
         return "agregarEmpleado";
+    }
+
+    @PostMapping("/GuardarEmpleado")
+    public String guardarEmpresa(Empleado emple, RedirectAttributes redirectAttributes){
+        if(empleadoServices.saveOrUpdateEmpleado(emple)==true){
+            redirectAttributes.addFlashAttribute("mensaje","saveOK");
+            return "redirect:/VerEmpleados";
+        }else{
+            redirectAttributes.addFlashAttribute("mensaje","saveError");
+            return "redirect:/AgregarEmpleado";
+        }
     }
 
     @GetMapping("/EditarEmpleado/{id}")
@@ -41,7 +52,7 @@ public class controllerEmpleado {
     }
 
     @PostMapping("/ActualizarEmpleado")
-    public String updateEmpleado(@ModelAttribute("emp") Empleado emple, RedirectAttributes redirectAttributes) {
+    public String updateEmpleado(@ModelAttribute("emple") Empleado emple, RedirectAttributes redirectAttributes) {
         if (empleadoServices.saveOrUpdateEmpleado(emple)) {
             redirectAttributes.addFlashAttribute("mensaje", "updateOK");
             return "redirect:/VerEmpleado";
