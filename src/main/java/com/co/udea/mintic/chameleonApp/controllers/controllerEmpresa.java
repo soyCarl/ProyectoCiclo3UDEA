@@ -20,15 +20,27 @@ public class controllerEmpresa {
         List<Empresa> listaEmpresas = empresaServices.getAllEmpresas();
         model.addAttribute("emplist", listaEmpresas);
         model.addAttribute("mensaje", mensaje);
+        System.out.println("entre al verEmpresas" + listaEmpresas + mensaje);
         return "verEmpresas"; //Llamamos al HTML
     }
 
-    @PostMapping("/AgregarEmpresa")
+    @GetMapping("/AgregarEmpresa")
     public String addEmpresa(Model model, @ModelAttribute("mensaje") String mensaje) {
         Empresa emp = new Empresa();
         model.addAttribute("emp", emp);
         model.addAttribute("mensaje", mensaje);
         return "agregarEmpresa";
+    }
+
+    @PostMapping("/GuardarEmpresa")
+    public String guardarEmpresa(Empresa emp, RedirectAttributes redirectAttributes){
+        if(empresaServices.saveOrUpdateEmpresa(emp)==true){
+            redirectAttributes.addFlashAttribute("mensaje","saveOK");
+            return "redirect:/VerEmpresas";
+        }else{
+        redirectAttributes.addFlashAttribute("mensaje","saveError");
+        return "redirect:/AgregarEmpresa";
+        }
     }
 
     @GetMapping("/EditarEmpresa/{id}")
@@ -37,6 +49,7 @@ public class controllerEmpresa {
         //Creamos un atributo para el modelo, que se llame igualmente emp y es el que ira al html para llenar o alimentar campos
         model.addAttribute("emp", emp);
         model.addAttribute("mensaje", mensaje);
+        System.out.println("ingrese al editar empresa por id");
         return "editarEmpresa";
     }
 

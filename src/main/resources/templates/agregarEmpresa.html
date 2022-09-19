@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>ChamaleonDevs Gestión Administrativa</title>
 </head>
 <body>
-<h1 Agregar nueva empresa/>
+<div class="container">
+<h1>Formulario para Agregar una Empresa</h1>
+<br>
+
+<form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post">
+
+    <!--Campo para NIT-->
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-3" for="NIT">NIT/RUT de la Empresa:</label>
+            <div class="col-md-6">
+                <input type="text" th:field="*{nitEmpresa}" class="form-control" id="NIT" required="required"></div>
+        </div>
+    </div>
+    <!--Campo para nombre-->
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-3" for="nombre">Nombre de la Empresa:</label>
+            <div class="col-md-6">
+                <input type="text" th:field="*{nombreEmpresa}" class="form-control" id="nombre" required="required"></div>
+        </div>
+    </div>
+    <!--Campo para telefono-->
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-3" for="telefono">Telefono de la Empresa:</label>
+            <div class="col-md-6">
+                <input type="text" th:field="*{telefonoEmpresa}" class="form-control" id="telefono" required="required"></div>
+        </div>
+    </div>
+    <!--Campo para direccion-->
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label class="col-md-3" for="direccion">Direccion de la Empresa:</label>
+            <div class="col-md-6">
+                <input type="text" th:field="*{direccionEmpresa}" class="form-control" id="direccion" required="required"></div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-success">Agregar Empresa</button>
+        </div>
+    </div>
+
+</form>
+
+<br>
+<a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a>
+</div>
+<script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${mensaje}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Empresa creada con éxito!")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Empresa actualizada con éxito!")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["error"]("Empresa eliminada con éxito!")
+        }
+        else if (msg == "deleteError"){
+            Command : toastr["error"]("Empresa no ha sido eliminada!")
+        }
+        toastr.options={
+            "positionClass": "toast-top-right",
+            "showDuration":"300",
+            "showMethod":"fadeIn",
+            "hideMethod":"fadeOut",
+        }
+    }
+</script>
 </body>
 </html>
