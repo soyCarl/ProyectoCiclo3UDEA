@@ -38,8 +38,8 @@ public class controllerEmpresa {
             redirectAttributes.addFlashAttribute("mensaje","saveOK");
             return "redirect:/VerEmpresas";
         }else{
-        redirectAttributes.addFlashAttribute("mensaje","saveError");
-        return "redirect:/AgregarEmpresa";
+            redirectAttributes.addFlashAttribute("mensaje","saveError");
+            return "redirect:/AgregarEmpresa";
         }
     }
 
@@ -53,7 +53,6 @@ public class controllerEmpresa {
         return "editarEmpresa";
     }
 
-
     @PostMapping("/ActualizarEmpresa")
     public String updateEmpresa(@ModelAttribute("emp") Empresa emp, RedirectAttributes redirectAttributes) {
         if (empresaServices.saveOrUpdateEmpresa(emp)) {
@@ -65,7 +64,7 @@ public class controllerEmpresa {
 
     }
 
-    @GetMapping("/EliminarEmpresa/{id}")
+    /*@GetMapping("/EliminarEmpresa/{id}")
     public String eliminarEmpresa(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         if (empresaServices.deleteEmpresa(id) == true) {
             redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
@@ -73,7 +72,6 @@ public class controllerEmpresa {
         }
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/VerEmpresas";
-    }
-
-
+    }*/
 }
+

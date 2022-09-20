@@ -7,82 +7,168 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>ChamaleonDevs Gestión Administrativa</title>
+
+    <!--Personal css-->
+    <link rel="stylesheet" href="/css/agregarFormulario.css">
+    <!--Personal css-->
+
 </head>
 <body>
+
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-dark bg-dark bg-gradient d-flex justify-content-around topbar mb-2 sticky-top shadow">
+    <!-- Sidebar Toggle (Topbar) -->
+
+    <!--LOGO CHAMELEON_DEVS-->
+    <div>
+        <a class="navbar-brand d-flex gap-3 align-items-center">
+            <img src="/img/logoAnimado8.gif" alt="logo" width="80" height="50" class="d-inline-block align-text-top border border-0 rounded-4">
+            <span class="ml-2 d-none d-lg-inline text-gray-600 small">Chameleon Devs</span>
+        </a>
+    </div>
+    <!--LOGO CHAMELEON_DEVS-->
+
+    <!--MENÚ-->
+    <ul class="navbar-nav d-flex gap-3">
+        <li class="nav-item">
+            <a class="nav-link active link-hover" aria-current="page" href="http://localhost:8080">Resumen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active link-hover" aria-current="page" href="/VerEmpleados">Empleado</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active link-hover" aria-current="page" href="/VerEmpresas">Empresa</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active link-hover" aria-current="page" href="/VerMovimientos">Movimiento</a>
+        </li>
+    </ul>
+    <!--MENÚ-->
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav">
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex gap-3 align-items-center" href="#" id="userDropdown" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Diego Tobón</span>
+                <img class="img-profile border border-0 rounded-4" src="img/user64.png" width="35" height="35">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                 aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Perfil
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Cerrar Sesión
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<!-- End of Topbar -->
+
 <div class="container">
-<h1>Formulario para Agregar una Empresa</h1>
-<br>
 
-<form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post">
-
-    <!--Campo para NIT-->
-    <div class="row">
-        <div class="form-group col-md-12">
-            <label class="col-md-3" for="NIT">NIT/RUT de la Empresa:</label>
-            <div class="col-md-6">
-                <input type="text" th:field="*{nitEmpresa}" class="form-control" id="NIT" required="required"></div>
+    <!--FORM-->
+    <div class="d-flex justify-content-center py-5">
+        <div class="py-5 text-center d-flex flex-column align-items-center glass col-4">
+            <h1 class="text-dark mb-4">Agregar Empresa</h1>
+            <form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post" class="d-flex flex-column gap-3 align-items-center">
+                <input th:field="*{nitEmpresa}" class="form-control" required="required" type="text" placeholder="NIT/RUT de la Empresa">
+                <input th:field="*{nombreEmpresa}" class="form-control" required="required" type="text" placeholder="Nombre de la Empresa">
+                <input th:field="*{telefonoEmpresa}" class="form-control" required="required" type="text" placeholder="Telefono de la Empresa">
+                <input th:field="*{direccionEmpresa}" class="form-control" required="required" type="text" placeholder="Direccion de la Empresa">
+                <button class="btn btn-brown text-white fw-bold px-3" type="submit">Crear Empresa</button>
+            </form>
         </div>
     </div>
-    <!--Campo para nombre-->
-    <div class="row">
-        <div class="form-group col-md-12">
-            <label class="col-md-3" for="nombre">Nombre de la Empresa:</label>
-            <div class="col-md-6">
-                <input type="text" th:field="*{nombreEmpresa}" class="form-control" id="nombre" required="required"></div>
-        </div>
-    </div>
-    <!--Campo para telefono-->
-    <div class="row">
-        <div class="form-group col-md-12">
-            <label class="col-md-3" for="telefono">Telefono de la Empresa:</label>
-            <div class="col-md-6">
-                <input type="text" th:field="*{telefonoEmpresa}" class="form-control" id="telefono" required="required"></div>
-        </div>
-    </div>
-    <!--Campo para direccion-->
-    <div class="row">
-        <div class="form-group col-md-12">
-            <label class="col-md-3" for="direccion">Direccion de la Empresa:</label>
-            <div class="col-md-6">
-                <input type="text" th:field="*{direccionEmpresa}" class="form-control" id="direccion" required="required"></div>
-        </div>
-    </div>
+    <!--FORM-->
 
 
-    <div class="row">
-        <div class="col-md-2">
-            <button class="btn btn-success">Agregar Empresa</button>
-        </div>
-    </div>
+    <!--
+   <h1>Formulario para Agregar una Empresa</h1>
+   <br>
 
-</form>
+   <form th:action="@{/GuardarEmpresa}" th:object="${emp}" method="post">
 
-<br>
-<a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a>
-</div>
-<script th:inline="javascript">
-    window.onload=function(){
+       &lt;!&ndash;Campo para NIT&ndash;&gt;
+       <div class="row">
+           <div class="form-group col-md-12">
+               <label class="col-md-3" for="NIT">NIT/RUT de la Empresa:</label>
+               <div class="col-md-6">
+                   <input type="text" th:field="*{nitEmpresa}" class="form-control" id="NIT" required="required"></div>
+           </div>
+       </div>
 
-        var msg= [[${mensaje}]];
-        if (msg == "saveOK"){
-            Command : toastr["success"]("Empresa creada con éxito!")
+       &lt;!&ndash;Campo para nombre&ndash;&gt;
+       <div class="row">
+           <div class="form-group col-md-12">
+               <label class="col-md-3" for="nombre">Nombre de la Empresa:</label>
+               <div class="col-md-6">
+                   <input type="text" th:field="*{nombreEmpresa}" class="form-control" id="nombre" required="required"></div>
+           </div>
+       </div>
+
+       &lt;!&ndash;Campo para telefono&ndash;&gt;
+       <div class="row">
+           <div class="form-group col-md-12">
+               <label class="col-md-3" for="telefono">Telefono de la Empresa:</label>
+               <div class="col-md-6">
+                   <input type="text" th:field="*{telefonoEmpresa}" class="form-control" id="telefono" required="required"></div>
+           </div>
+       </div>
+
+       &lt;!&ndash;Campo para direccion&ndash;&gt;
+       <div class="row">
+           <div class="form-group col-md-12">
+               <label class="col-md-3" for="direccion">Direccion de la Empresa:</label>
+               <div class="col-md-6">
+                   <input type="text" th:field="*{direccionEmpresa}" class="form-control" id="direccion" required="required"></div>
+           </div>
+       </div>
+
+
+       <div class="row">
+           <div class="col-md-2">
+               <button class="btn btn-success">Agregar Empresa</button>
+           </div>
+       </div>
+
+   </form>
+
+   <br>
+   <a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a>
+   </div>-->
+
+
+    <script th:inline="javascript">
+        window.onload=function(){
+
+            var msg= [[${mensaje}]];
+            if (msg == "saveOK"){
+                Command : toastr["success"]("Empresa creada con éxito!")
             }
-        else if (msg == "updateOK"){
-            Command : toastr["success"]("Empresa actualizada con éxito!")
+            else if (msg == "updateOK"){
+                Command : toastr["success"]("Empresa actualizada con éxito!")
+            }
+            else if (msg == "deleteOK"){
+                Command : toastr["error"]("Empresa eliminada con éxito!")
+            }
+            else if (msg == "deleteError"){
+                Command : toastr["error"]("Empresa no ha sido eliminada!")
+            }
+            toastr.options={
+                "positionClass": "toast-top-right",
+                "showDuration":"300",
+                "showMethod":"fadeIn",
+                "hideMethod":"fadeOut",
+            }
         }
-        else if (msg == "deleteOK"){
-            Command : toastr["error"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError"){
-            Command : toastr["error"]("Empresa no ha sido eliminada!")
-        }
-        toastr.options={
-            "positionClass": "toast-top-right",
-            "showDuration":"300",
-            "showMethod":"fadeIn",
-            "hideMethod":"fadeOut",
-        }
-    }
-</script>
+    </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class restcontrollerEmpresa {
         return empresaServices.saveOrUpdateEmpresaRest(empr);
     }
 
-    @DeleteMapping(path = "empresa/{id}")
+    /*@DeleteMapping(path = "empresa/{id}")
     public String DeleteEmpresa(@PathVariable("id") Long id) {
         boolean respuesta = this.empresaServices.deleteEmpresa(id);
         if (respuesta) {
@@ -52,6 +53,12 @@ public class restcontrollerEmpresa {
         } else {
             return "No se pudo eliminar la empresa con id" + id;
         }
+    }*/
+
+    @GetMapping("/EliminarEmpresa/{id}")
+    public RedirectView eliminarEmpresa(@PathVariable("id") Long id) {
+        this.empresaServices.deleteEmpresa(id);
+        return new RedirectView("/VerEmpresas");
     }
 
 }

@@ -53,5 +53,4 @@ public class MovimientosServices {
         System.out.println("id empresa para mov" + id);
         return movimientosRepository.findByEmpresa(id);
     }
-
 }

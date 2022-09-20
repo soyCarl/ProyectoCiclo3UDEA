@@ -1,0 +1,33 @@
+body {
+    background-image: url('../img/logo_fondo.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+.color-brown {
+    color: #602A0F;
+}
+.glass {
+    border-radius: 3rem;
+    border: solid 0.01rem rgba(128, 128, 128, 0.3);
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+.btn-brown {
+    background-color: #602A0F !important;
+    border-radius: 0.5rem !important;
+    /*color: white !important;*/
+}
+.btn-brown:hover {
+    background-color: #BFB90D !important;
+    color: #602A0F !important;
+    border-radius: 0.5rem !important;
+    font-weight: bold !important;
+}
+.link-hover{
+    color: white !important;
+}
+.link-hover:hover{
+    color: #BFB90D !important;
+}

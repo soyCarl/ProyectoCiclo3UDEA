@@ -1,0 +1,24 @@
+.color-brown {
+    color: #602A0F;
+}
+.btn-brown {
+    background-color: #602A0F !important;
+    border-radius: 0.5rem !important;
+    /*color: white !important;*/
+}
+.btn-brown:hover {
+    background-color: #BFB90D !important;
+    color: #602A0F !important;
+    border-radius: 0.5rem !important;
+    font-weight: bold !important;
+}
+.link-hover{
+    color: white !important;
+}
+.link-hover:hover{
+    color: #BFB90D !important;
+}
+
+.color-brown {
+    color: #602A0F;
+}

@@ -3,11 +3,13 @@ package com.co.udea.mintic.chameleonApp.restcontroller;
 import com.co.udea.mintic.chameleonApp.entities.Empleado;
 import com.co.udea.mintic.chameleonApp.services.EmpleadoServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
-@RestController
+@Controller
 //@RequestMapping("/")
 public class restcontrollerEmpleado {
     @Autowired
@@ -42,7 +44,7 @@ public class restcontrollerEmpleado {
         return empleadoServices.saveOrUpdateEmpleadoRest(emp);
     }
 
-    @DeleteMapping(path = "empleado/{id}")
+    /*@DeleteMapping(path = "empleado/{id}")
     public String DeleteEmpleado(@PathVariable("id") Long id) {
         boolean respuesta = this.empleadoServices.deleteEmpleado(id);
         if (respuesta) {
@@ -50,6 +52,12 @@ public class restcontrollerEmpleado {
         } else {
             return "No se pudo eliminar el empleado con id" + id;
         }
+    }*/
+
+    @GetMapping("/EliminarEmpleado/{id}")
+    public RedirectView eliminarEmpresa(@PathVariable("id") Long id) {
+        this.empleadoServices.deleteEmpleado(id);
+        return new RedirectView("/VerEmpleado");
     }
 
 }

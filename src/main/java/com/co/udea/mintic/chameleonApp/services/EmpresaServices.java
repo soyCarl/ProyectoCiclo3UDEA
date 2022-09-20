@@ -13,7 +13,6 @@ public class EmpresaServices {
     @Autowired
     EmpresaRepository empresaRepository;
 
-
     public List<Empresa> getAllEmpresas() {
         List<Empresa> empresaList = new ArrayList<>();
         empresaRepository.findAll().forEach(empresa -> empresaList.add(empresa));
@@ -44,6 +43,5 @@ public class EmpresaServices {
         }
         return false;
     }
-
 }
 

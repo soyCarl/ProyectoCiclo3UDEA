@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 public class ChameleonAppApplication {
-
-
     public static void main(String[] args) {
 
         SpringApplication.run(ChameleonAppApplication.class, args);
@@ -62,6 +60,8 @@ public class ChameleonAppApplication {
 		//Instancia de la clase MovimientoDinero
 */
 
+
+/*
 		Empleado empleado = new Empleado();
 
         //empleado.setId(1l);
@@ -80,8 +80,7 @@ public class ChameleonAppApplication {
 		System.out.println("Movimientos empleado:"+empleado.getMovDinero());
 		System.out.println("Fecha creacion empleado:"+empleado.getFechaCreacion());
 		System.out.println("Fecha modificacion empleado:"+empleado.getFechaModificacion());
-
-
+*/
 
     }
 
