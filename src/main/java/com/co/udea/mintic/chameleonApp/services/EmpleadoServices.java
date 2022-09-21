@@ -31,7 +31,7 @@ public class EmpleadoServices {
 
     public boolean saveOrUpdateEmpleado(Empleado empleado) {
         Empleado emple = empleadoRepository.save(empleado);
-        if (empleadoRepository.findById(emple.getId()) != null) {
+        if (empleadoRepository.findById(emple.getEmpleadoId()) != null) {
             return true;
         }
         return false;

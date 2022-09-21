@@ -48,11 +48,11 @@ public class MovimientoDinero {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Long getId() {
+    public Long getMovDineroId() {
         return movDineroId;
     }
 
-    public void setId(Long movDineroId) {
+    public void setMovDineroId(Long movDineroId) {
         this.movDineroId = movDineroId;
     }
 

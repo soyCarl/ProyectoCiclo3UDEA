@@ -56,6 +56,7 @@ public class Empresa {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+
     public Long getEmpresaId() {
         return empresaId;
     }
@@ -128,20 +129,5 @@ public class Empresa {
 
     public void setFechaActualizacion(Date fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
-    }
-
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "empresaId=" + empresaId +
-                ", nombreEmpresa='" + nombreEmpresa + '\'' +
-                ", nitEmpresa='" + nitEmpresa + '\'' +
-                ", telefonoEmpresa='" + telefonoEmpresa + '\'' +
-                ", direccionEmpresa='" + direccionEmpresa + '\'' +
-                ", empleado=" + empleado +
-                ", movimientoDinero=" + movimientoDinero +
-                ", fechaCreacion=" + fechaCreacion +
-                ", fechaActualizacion=" + fechaActualizacion +
-                '}';
     }
 }

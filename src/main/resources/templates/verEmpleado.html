@@ -115,7 +115,7 @@
 
                         <tbody>
                         <tr th:each="empleado : ${emplelist}">
-                            <td th:text="${empleado.id}"></td>
+                            <td th:text="${empleado.empleadoId}"></td>
                             <td th:text="${empleado.nombre}"></td>
                             <td th:text="${empleado.correoEmpleado}"></td>
                             <td th:text="${empleado.perfil}"></td>
@@ -123,18 +123,10 @@
                             <td th:text="${empleado.empresa}"></td>
                             <td th:text="${empleado.fechaCreacion}"></td>
                             <td th:text="${empleado.fechaModificacion}"></td>
-                            <!--<td>
-                                <button type="button" class="btn btn-warning"><a
-                                        th:href="@{/EditarEmpleado/{id}(id=${empleado.id})}">Editar</a></button>
-                            </td>-->
-                            <td class="text-center"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.id})}" class="btn btn-outline-primary bi bi-pencil"></a></td>
-                            <td class="text-center"><a th:href="@{/EliminarEmpleado/{id}(id=${empleado.id})}" class="btn btn-outline-danger bi bi-trash"></a></td>
-                            <!--<td>
-                                <button type="button" class="btn btn-danger"><a
-                                        th:href="@{/EliminarEmpleado/{id}(id=${empleado.id})}">Eliminar</a>
-                                </button>
-                            </td>-->
-                            <<!--<td><a th:href="@{/EliminarEmpleado/{id}(id=${empleado.id})}" class="btn btn-outline-danger bi bi-trash">/a></td>-->
+
+                            <td class="text-center"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.empleadoId})}" class="btn btn-outline-primary bi bi-pencil"></a></td>
+                            <td class="text-center"><a th:href="@{/EliminarEmpleado/{id}(id=${empleado.empleadoId})}" class="btn btn-outline-danger bi bi-trash"></a></td>
+
                         </tr>
                         </tbody>
                     </table>

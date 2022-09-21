@@ -80,7 +80,13 @@
         <form th:action="@{/GuardarEmpleado}" th:object="${emple}" method="post" class="d-flex flex-column gap-3 align-items-center">
             <input th:field="*{nombre}" class="form-control" required="required" type="text" placeholder="Nombre">
             <input th:field="*{correoEmpleado}" class="form-control" required="required" type="text" placeholder="Correo">
-            <input th:field="*{rolEmpleado}" class="form-control" required="required" type="text" placeholder="Rol de usuario">
+            <select th:field="*{rolEmpleado}" class="form-control" required="required">
+                <option value="">-Rol Empleado-</option>
+                <option th:value='ADMIN'>Administrativo</option>
+                <option th:value='OPERARIO'>Operario</option>
+            </select>
+            <input th:field="*{contraseña}" class="form-control" required="required" type="password" placeholder="Password">
+            <input th:field="*{estado}" class="form-control" required="required" type="text" placeholder="Estado">
             <button class="btn btn-brown text-white fw-bold px-3" type="submit">Crear persona</button>
         </form>
     </div>
