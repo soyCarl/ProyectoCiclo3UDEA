@@ -1,5 +1,7 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Date;
@@ -23,9 +25,11 @@ public class Perfil {
     private Empleado empleado;
 
     @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaCreacion;
 
     @Column(name = "fecha_modificacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
 
     public Perfil() {

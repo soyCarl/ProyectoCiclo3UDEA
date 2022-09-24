@@ -64,14 +64,14 @@ public class controllerEmpresa {
 
     }
 
-    /*@GetMapping("/EliminarEmpresa/{id}")
+    @GetMapping("/EliminarEmpresa/{id}")
     public String eliminarEmpresa(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (empresaServices.deleteEmpresa(id) == true) {
+        if (empresaServices.deleteEmpresa(id)) {
             redirectAttributes.addFlashAttribute("mensaje", "deleteOK");
             return "redirect:/VerEmpresas";
         }
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/VerEmpresas";
-    }*/
+    }
 }
 

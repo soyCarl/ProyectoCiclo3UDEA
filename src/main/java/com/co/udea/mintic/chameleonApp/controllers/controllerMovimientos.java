@@ -1,7 +1,10 @@
 package com.co.udea.mintic.chameleonApp.controllers;
 
+import com.co.udea.mintic.chameleonApp.entities.Empleado;
 import com.co.udea.mintic.chameleonApp.entities.Empresa;
 import com.co.udea.mintic.chameleonApp.entities.MovimientoDinero;
+import com.co.udea.mintic.chameleonApp.services.EmpleadoServices;
+import com.co.udea.mintic.chameleonApp.services.EmpresaServices;
 import com.co.udea.mintic.chameleonApp.services.MovimientosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,29 +20,62 @@ import java.util.List;
 public class controllerMovimientos {
     @Autowired
     MovimientosServices movimientosServices;
+    @Autowired
+    EmpresaServices empresaServices;
+    @Autowired
+    EmpleadoServices empleadoServices;
 
     @GetMapping("/VerMovimientos")
     public String verMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) {
         List<MovimientoDinero> listaMov = movimientosServices.getAllMovimientos();
-        model.addAttribute("emplist", listaMov);
+        model.addAttribute("listMov", listaMov);
         model.addAttribute("mensaje", mensaje);
+
+        List<Empleado> empleList = empleadoServices.getAllEmpleados();
+        model.addAttribute("emplist",empleList);
+        List<Empresa> emprelist = empresaServices.getAllEmpresas();
+        model.addAttribute("emprlist",emprelist);
+        System.out.println("ingrese al agregrarEmpleado");
         return "verMovimientos"; //Llamamos al HTML
     }
 
-    @PostMapping("/AgregarMovimientos")
+    @GetMapping("/AgregarMovimientos")
     public String addMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) {
         MovimientoDinero mov = new MovimientoDinero();
-        model.addAttribute("emp", mov);
+        model.addAttribute("mov", mov);
         model.addAttribute("mensaje", mensaje);
+        List<Empleado> empleList = empleadoServices.getAllEmpleados();
+        model.addAttribute("emplist",empleList);
+        List<Empresa> emprelist = empresaServices.getAllEmpresas();
+        model.addAttribute("emprlist",emprelist);
         return "agregarMovimiento";
     }
+
+    @PostMapping("/GuardarMovimientos")
+    public String guardarMovimientos(MovimientoDinero mov, RedirectAttributes redirectAttributes){
+        if(movimientosServices.saveOrUpdateMovimientoRest(mov)==true){
+            redirectAttributes.addFlashAttribute("mensaje","saveOK");
+            System.out.println("ingresado con exito");
+            return "redirect:/VerMovimientos";
+        }else{
+            redirectAttributes.addFlashAttribute("mensaje","saveError");
+            System.out.println("fallo ingreso");
+            return "redirect:/AgregarMovimientos";
+        }
+    }
+
+
 
     @GetMapping("/EditarMovimiento/{id}")
     public String editarMovimiento(Model model, @PathVariable Long id, @ModelAttribute("mensaje") String mensaje) {
         MovimientoDinero mov = movimientosServices.getMovimientoById(id);
-        model.addAttribute("emp", mov);
+        model.addAttribute("mov", mov);
         model.addAttribute("mensaje", mensaje);
-        return "editarMovimientos";
+        List<Empleado> empleList = empleadoServices.getAllEmpleados();
+        model.addAttribute("emplist",empleList);
+        List<Empresa> emprelist = empresaServices.getAllEmpresas();
+        model.addAttribute("emprlist",emprelist);
+        return "editarMovimiento";
     }
 
     @PostMapping("/ActualizarMovimientos")

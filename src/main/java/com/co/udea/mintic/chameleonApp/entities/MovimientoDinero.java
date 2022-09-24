@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -31,15 +32,18 @@ public class MovimientoDinero {
     private Empresa empresa;
 
     @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaCreacion;
 
     @Column(name = "fecha_actualizacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
 
     public MovimientoDinero() {
     }
 
     public MovimientoDinero(Long movDineroId, String concepto, Float monto, Empleado empleado, Empresa empresa, Date fechaCreacion, Date fechaActualizacion) {
+        this.movDineroId = movDineroId;
         this.concepto = concepto;
         this.monto = monto;
         this.empleado = empleado;

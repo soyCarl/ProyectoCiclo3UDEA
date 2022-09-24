@@ -2,11 +2,13 @@ package com.co.udea.mintic.chameleonApp.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -21,7 +23,7 @@ public class ConfigSeguridad extends WebSecurityConfigurerAdapter {
     CustomSuccesHandler customSuccessHandler;
 
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select correo,password,estado from empleado where correo=?")
@@ -31,17 +33,25 @@ public class ConfigSeguridad extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/","VerEmpresas/**").hasRole("ADMIN")
-                .antMatchers("/VerEmpleados/**").hasRole("ADMIN")
-                .antMatchers("/Empresa/**").hasRole("ADMIN")
-                .antMatchers("/Empleado/**").hasRole("ADMIN")
-                .antMatchers("/VerMovimiento/**").hasAnyRole("ADMIN","OPERARIO")
-                .antMatchers("/AgregarMovimiento/**").hasAnyRole("ADMIN","OPERARIO")
-                .antMatchers("/EditarMovimiento/**").hasAnyRole("ADMIN","OPERARIO")
-                .and().formLogin().successHandler(customSuccessHandler)
-                .and().exceptionHandling().accessDeniedPage("/AccessDenied")
-                .and().logout().permitAll();
+        http.authorizeRequests().antMatchers("/RegistrarEmpleado")
+                .permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers(HttpMethod.GET).permitAll()
+                .antMatchers(HttpMethod.POST).permitAll()
+                .antMatchers(HttpMethod.PUT).permitAll()
+                .antMatchers(HttpMethod.DELETE).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
     }
 }
 

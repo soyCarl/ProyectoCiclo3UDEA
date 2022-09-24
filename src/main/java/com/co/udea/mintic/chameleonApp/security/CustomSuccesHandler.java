@@ -38,9 +38,9 @@ public class CustomSuccesHandler  extends SimpleUrlAuthenticationSuccessHandler 
             System.out.println("Custom"+roles.toString());
         }
         if(esAdmin(roles)){
-            url="/VerEmpresas";
+            url="/Index";
         }else if (esOperario(roles)){
-            url = "/VerMovimientos";
+            url = "/Index";
         }else{
             url = "/AccesoDenegado";
         }
@@ -48,14 +48,14 @@ public class CustomSuccesHandler  extends SimpleUrlAuthenticationSuccessHandler 
     }
 
     private boolean esAdmin(List<String> roles){
-        if(roles.contains("ADMIN")){
+        if(roles.contains("ROLE_ADMIN")){
             return true;
         }
         return false;
     }
 
     private boolean esOperario(List<String> roles){
-        if(roles.contains("OPERARIO")){
+        if(roles.contains("ROLE_OPERARIO")){
             return true;
         }
         return false;

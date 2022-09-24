@@ -1,6 +1,7 @@
 package com.co.udea.mintic.chameleonApp.entities;
 
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -43,9 +44,11 @@ public class Empleado {
     private List<MovimientoDinero> movDinero;
 
     @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaCreacion;
 
     @Column(name = "fecha_modificacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaModificacion;
 
     public Empleado() {
@@ -146,7 +149,7 @@ public class Empleado {
         this.contraseña = contraseña;
     }
 
-    public Boolean isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
