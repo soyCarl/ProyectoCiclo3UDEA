@@ -50,7 +50,7 @@
 <!--                <option th:each="perfil : ${perflist}" th:text="${perfil.id}" th:value="${perfil.id}"></option>-->
 <!--            </select>-->
 
-            <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+            <select th:field="*{empresa}" class="form-control" id="empresa">
                 <option value="">--Seleccione una Empresa--</option>
                 <option th:each="empresa : ${emplist}" th:text="${empresa.nombreEmpresa}" th:value="${empresa.empresaId}"></option>
             </select>
