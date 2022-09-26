@@ -98,19 +98,27 @@
 <div class="d-flex justify-content-center">
     <div class="py-5 text-center d-flex flex-column align-items-center glass col-4">
         <h1 class="text-dark mb-4">Nuevo Movimiento</h1>
-        <form th:action="@{/GuardarMovimientos}" th:object="${mov}" method="post" class="d-flex flex-column gap-3 align-items-center">
+        <form th:action="@{/GuardarMovimientos}" th:object="${mov}" method="post"
+              class="d-flex flex-column gap-3 align-items-center">
             <input th:field="*{concepto}" class="form-control" required="required" type="text" placeholder="Concepto">
             <input th:field="*{monto}" class="form-control" required="required" type="number" placeholder="Monto">
-            <select th:field="*{empleado}" class="form-control" id="empleado" required="required">
-                <option value="">--Seleccione un Empleado--</option>
-                <option th:each="empleado : ${emplist}" th:text="${empleado.nombre}" th:value="${empleado.empleadoId}"></option>
+            <!--            <select th:field="*{empleado}" class="form-control" id="empleado" required="required">-->
+            <!--                <option value="">&#45;&#45;Seleccione un Empleado&#45;&#45;</option>-->
+            <!--                <option th:each="empleado : ${emplist}" th:text="${empleado.nombre}" th:value="${empleado.empleadoId}"></option>-->
+            <!--            </select>-->
+            <select th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
+                <option th:text="${#httpServletRequest.remoteUser}" th:value="${idEmpleado}"></option>
             </select>
+
             <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
                 <option value="">--Seleccione una Empresa--</option>
-                <option th:each="empresa : ${emprlist}" th:text="${empresa.nombreEmpresa}" th:value="${empresa.empresaId}"></option>
+                <option th:each="empresa : ${emprlist}" th:text="${empresa.nombreEmpresa}"
+                        th:value="${empresa.empresaId}"></option>
             </select>
-            <input th:field="*{fechaCreacion}" class="form-control" required="" type="date" placeholder="Fecha de creación">
-            <input th:field="*{fechaActualizacion}" class="form-control" required="" type="date" placeholder="Fecha de modificación">
+            <input th:field="*{fechaCreacion}" class="form-control" required="required" type="date"
+                   placeholder="Fecha de creación">
+            <input th:field="*{fechaActualizacion}" class="form-control" required="required" type="date"
+                   placeholder="Fecha de modificación">
             <div class="align-items-right">
                 <button class="btn btn-brown text-white fw-bold px-3" type="submit">Crear Movimiento</button>
             </div>
@@ -121,8 +129,13 @@
 </body>
 
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script th:inline="javascript">
+  window.onload=function(){
+  document.getElementById("fecha").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  }
+
+</script>
 </body>
 </html>

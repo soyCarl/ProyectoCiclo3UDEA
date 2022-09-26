@@ -18,4 +18,8 @@ public interface MovimientosRepository extends JpaRepository<MovimientoDinero, L
     @Query(value = "select * from movimiento_dinero where id_empresa= ?", nativeQuery = true)
     public abstract ArrayList<MovimientoDinero> findByEmpresa(Long id);
 
+    //Metodo para obtener el Id del empleado con su correo
+    @Query(value = "select id_empleado from empleado where correo= ?", nativeQuery = true)
+    public abstract Long IdPorCorreo(String correo);
+
 }

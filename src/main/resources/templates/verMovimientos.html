@@ -124,8 +124,8 @@
                         <td th:text="${#numbers.formatCurrency(movDinero.monto)}"></td>
                         <td th:text="${movDinero.empleado.nombre}"></td>
                         <td th:text="${movDinero.empresa.nombreEmpresa}"></td>
-                        <td th:text="${movDinero.fechaCreacion}"></td>
-                        <td th:text="${movDinero.fechaActualizacion}"></td>
+                        <td th:text="${#dates.format(movDinero.fechaCreacion, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#dates.format(movDinero.fechaActualizacio, 'dd/MM/yyyy')}"></td>
                         <td class="text-center"><a th:href="@{EditarMovimiento/{id}(id=${movDinero.movDineroId})}"
                                                    class="btn btn-outline-primary bi bi-pencil"></a></td>
                         <td class="text-center"><a th:href="@{/EliminarMovimiento/{id}(id=${movDinero.movDineroId})}"

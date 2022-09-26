@@ -12,7 +12,7 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//El id debe se tipo string y no autoincrementado
     @Column(name = "id_perfil")
-    private Long id;
+    private Long perfilId;
 
     @Column(name = "imagen")
     private Blob imagen;
@@ -36,8 +36,8 @@ public class Perfil {
 
     }
 
-    public Perfil(Long id, Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
-        this.id = id;
+    public Perfil(Long perfilId, Blob imagen, String telefono, Empleado empleado, Date fechaCreacion, Date fechaActualizacion) {
+        this.perfilId = perfilId;
         this.imagen = imagen;
         this.telefono = telefono;
         this.empleado = empleado;
@@ -45,12 +45,12 @@ public class Perfil {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPerfilId() {
+        return perfilId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPerfilId(Long perfilId) {
+        this.perfilId = perfilId;
     }
 
     public Blob getImagen() {
@@ -97,7 +97,7 @@ public class Perfil {
     @Override
     public String toString() {
         return "Perfil{" +
-                "id=" + id +
+                "id=" + perfilId +
                 ", imagen=" + imagen +
                 ", telefono='" + telefono + '\'' +
                 ", empleado=" + empleado +

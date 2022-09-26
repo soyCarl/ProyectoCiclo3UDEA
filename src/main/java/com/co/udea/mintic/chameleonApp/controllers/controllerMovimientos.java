@@ -7,6 +7,8 @@ import com.co.udea.mintic.chameleonApp.services.EmpleadoServices;
 import com.co.udea.mintic.chameleonApp.services.EmpresaServices;
 import com.co.udea.mintic.chameleonApp.services.MovimientosServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +46,16 @@ public class controllerMovimientos {
         MovimientoDinero mov = new MovimientoDinero();
         model.addAttribute("mov", mov);
         model.addAttribute("mensaje", mensaje);
-        List<Empleado> empleList = empleadoServices.getAllEmpleados();
-        model.addAttribute("emplist",empleList);
+
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        String correo=auth.getName();
+        Long idEmpleado=movimientosServices.IdPorCorreo(correo);
+        model.addAttribute("idEmpleado",idEmpleado);
+
+//        List<Empleado> empleList = empleadoServices.getAllEmpleados();
+//        model.addAttribute("emplist",empleList);
+
+
         List<Empresa> emprelist = empresaServices.getAllEmpresas();
         model.addAttribute("emprlist",emprelist);
         return "agregarMovimiento";

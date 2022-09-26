@@ -59,7 +59,6 @@ public class Empresa {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-
     public Long getEmpresaId() {
         return empresaId;
     }

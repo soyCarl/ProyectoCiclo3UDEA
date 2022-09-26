@@ -156,4 +156,5 @@ public class Empleado {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
 }

@@ -56,4 +56,8 @@ public class MovimientosServices {
         System.out.println("id empresa para mov" + id);
         return movimientosRepository.findByEmpresa(id);
     }
+
+    public Long IdPorCorreo(String Correo){
+        return movimientosRepository.IdPorCorreo(Correo);
+    }
 }

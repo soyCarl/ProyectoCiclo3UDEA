@@ -6,6 +6,8 @@ import com.co.udea.mintic.chameleonApp.services.EmpleadoServices;
 import com.co.udea.mintic.chameleonApp.services.EmpresaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,8 @@ public class controllerEmpleado {
         List<Empleado> listaEmpleado = empleadoServices.getAllEmpleados();
         model.addAttribute("emplelist", listaEmpleado);
         model.addAttribute("mensaje", mensaje);
+        List<Empresa> emprelist = empresaServices.getAllEmpresas();
+        model.addAttribute("emplist",emprelist);
         System.out.println("entre al verEmpleado" + listaEmpleado + mensaje);
         return "verEmpleado"; //Llamamos al HTML
     }

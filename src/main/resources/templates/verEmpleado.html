@@ -127,7 +127,7 @@
                             <td th:if="${empleado.rolEmpleado=='ROLE_OPERARIO'}">Operativo</td>
                             <td th:if="${empleado.estado==true}">Activo</td>
                             <td th:if="${empleado.estado==false}">Inactivo</td>
-                            <td th:text="${empleado.empresa.nombreEmpresa}"></td>
+                            <td th:text="${empleado?.empresa?.nombreEmpresa}"></td>
                             <td th:text="${#dates.format(empleado.fechaCreacion, 'dd/MM/yyyy')}"></td>
                             <td th:text="${#dates.format(empleado.fechaModificacion, 'dd/MM/yyyy')}"></td>
 

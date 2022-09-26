@@ -127,8 +127,9 @@
                             <td th:text="${empresa.nombreEmpresa}"></td>
                             <td th:text="${empresa.telefonoEmpresa}"></td>
                             <td th:text="${empresa.direccionEmpresa}"></td>
-                            <td th:text="${empresa.fechaCreacion}"></td>
-                            <td th:text="${empresa.fechaActualizacion}"></td>
+                            <td th:text="${#dates.format(empresa.fechaCreacion, 'dd/MM/yyyy')}"></td>
+                            <td th:text="${#dates.format(empresa.fechaActualizacion, 'dd/MM/yyyy')}"></td>
+
                             <td class="text-center"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.empresaId})}"
                                                        class="btn btn-outline-primary bi bi-pencil"></a></td>
                             <td class="text-center"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.empresaId})}"

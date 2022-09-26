@@ -30,28 +30,60 @@ public class ConfigSeguridad extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("select correo, rol_empleado from empleado where correo=?");
     }
 
+    String[] resources = new String[]{"/css/**", "/img/**", "/js/**"};
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/RegistrarEmpleado")
-                .permitAll()
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers(HttpMethod.GET).permitAll()
-                .antMatchers(HttpMethod.POST).permitAll()
-                .antMatchers(HttpMethod.PUT).permitAll()
-                .antMatchers(HttpMethod.DELETE).permitAll()
+        http
+                .authorizeRequests()
+                .antMatchers(resources).permitAll()
+                .antMatchers("/RegistrarEmpleado").permitAll()
+                .antMatchers("/VerEmpleados").access("hasRole('ADMIN')")
+                .antMatchers("/VerEmpresas").access("hasRole('ADMIN')")
+                .antMatchers("/VerMovimientos/**").access("hasRole('OPERARIO') or hasRole('ADMIN')")
+
+////                .antMatchers(HttpMethod.OPTIONS).permitAll()
+//                .antMatchers(HttpMethod.GET).permitAll()
+//                .antMatchers(HttpMethod.POST).permitAll()
+////                .antMatchers(HttpMethod.PUT).permitAll()
+////                .antMatchers(HttpMethod.DELETE).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/login").permitAll()
+//                .defaultSuccessUrl("/index")
+                .failureUrl("/login?error=true")
+                .and().exceptionHandling().accessDeniedPage("/AccesoDenegado")
                 .and()
                 .logout()
+                .permitAll()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .logoutSuccessUrl("/login?logout");
     }
+
+//            http.authorizeRequests().antMatchers("/RegistrarEmpleado")
+//                .permitAll()
+//////                .antMatchers(HttpMethod.OPTIONS).permitAll()
+////                .antMatchers(HttpMethod.GET).permitAll()
+////                .antMatchers(HttpMethod.POST).permitAll()
+//////                .antMatchers(HttpMethod.PUT).permitAll()
+//////                .antMatchers(HttpMethod.DELETE).permitAll()
+////                .anyRequest().authenticated()
+//                .and()
+//                .formLogin().successHandler(customSuccessHandler)
+//                .loginPage("/login")
+////                .permitAll()
+//                .and()
+//                .logout()
+////                .invalidateHttpSession(true)
+////                .clearAuthentication(true)
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//            .logoutSuccessUrl("/login?logout")
+//                .permitAll();
+
+
 }
 
