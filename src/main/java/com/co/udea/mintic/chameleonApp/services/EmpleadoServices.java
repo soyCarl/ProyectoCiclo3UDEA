@@ -44,4 +44,8 @@ public class EmpleadoServices {
         }
         return false;
     }
+
+    public int obtenerCantEmpleados(){
+        return empleadoRepository.CantEmpleados();
+    }
 }

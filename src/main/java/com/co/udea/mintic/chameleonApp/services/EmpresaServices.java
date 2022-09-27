@@ -43,5 +43,9 @@ public class EmpresaServices {
         }
         return false;
     }
+
+    public int obtenerCantEmpresas(){
+        return empresaRepository.CantEmpresas();
+    }
 }
 

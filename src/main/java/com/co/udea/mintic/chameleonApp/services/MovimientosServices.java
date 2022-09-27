@@ -60,4 +60,12 @@ public class MovimientosServices {
     public Long IdPorCorreo(String Correo){
         return movimientosRepository.IdPorCorreo(Correo);
     }
+
+    public float obtenerTotalMovPos(){
+        return movimientosRepository.totalMovPos();
+    }
+
+    public float obtenerTotalMovNeg(){
+        return movimientosRepository.totalMovNeg();
+    }
 }

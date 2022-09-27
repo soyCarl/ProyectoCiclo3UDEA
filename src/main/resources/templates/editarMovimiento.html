@@ -111,7 +111,7 @@
                     <span class="input-group-text">$</span>
                 </div>
                 <input th:value="*{monto}" class="form-control" type="number" placeholder="Monto" id="n1">
-                <input th:field="*{monto}" class="form-control" type="number" placeholder="Monto" id="n2" readonly disabled>
+                <input th:field="*{monto}" class="form-control" type="number" placeholder="Monto" id="n2" readonly hidden>
             </div>
             <input th:field="*{concepto}" class="form-control" required="required" type="text" placeholder="Detalle de Concepto">
             <!--            <input th:field="*{monto}" class="form-control" required="required" type="number" placeholder="Monto" hidden>-->
@@ -128,8 +128,8 @@
                 <option th:each="empresa : ${emprlist}" th:text="${empresa.nombreEmpresa}"
                         th:value="${empresa.empresaId}"></option>
             </select>
-            <input th:field="*{fechaCreacion}" class="form-control" required="required" type="date"
-                   placeholder="Fecha de creación" id="fecha1" readonly>
+<!--            <input th:field="*{fechaCreacion}" class="form-control" required="required" type="date"-->
+<!--                   placeholder="Fecha de creación" id="fecha1" readonly>-->
             <input th:field="*{fechaActualizacion}" class="form-control" required="required" type="date"
                    placeholder="Fecha de modificación" id="fecha2" readonly>
             <div class="align-items-right">
