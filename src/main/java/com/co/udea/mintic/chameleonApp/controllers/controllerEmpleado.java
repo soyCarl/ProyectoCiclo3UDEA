@@ -80,9 +80,24 @@ public class controllerEmpleado {
     public String updateEmpleado(@ModelAttribute("emple") Empleado emple, RedirectAttributes redirectAttributes) {
         Long id=emple.getEmpleadoId();
         String oldPass = empleadoServices.getEmpleadoById(id).getContraseña();
-        if(!emple.getContraseña().equals(oldPass)){
-            String passEncrip = passwordEncoder().encode(emple.getContraseña());
-            emple.setContraseña(passEncrip);
+        if(emple.getContraseña().isEmpty()){
+            emple.setContraseña(oldPass);
+            System.out.println("es null, asigne la vieja");
+        }else {
+            if(!emple.getContraseña().equals(oldPass)){
+                String passEncrip = passwordEncoder().encode(emple.getContraseña());
+                emple.setContraseña(passEncrip);
+                System.out.println("son diferentes");
+                System.out.println("vieja"+oldPass);
+                System.out.println("formulario"+emple.getContraseña());
+                System.out.println("nueva pass"+passEncrip);
+            }
+//            else{
+//                System.out.println("son iguales");
+//                System.out.println("vieja"+oldPass);
+//                System.out.println("formulario"+emple.getContraseña());
+//                System.out.println("no se actualiza la contraseña");
+//            }
         }
         if (empleadoServices.saveOrUpdateEmpleado(emple)) {
             redirectAttributes.addFlashAttribute("mensaje", "updateOK");

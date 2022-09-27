@@ -41,7 +41,7 @@ public class ConfigSeguridad extends WebSecurityConfigurerAdapter {
                 .antMatchers("/RegistrarEmpleado").permitAll()
                 .antMatchers("/VerEmpleados").access("hasRole('ADMIN')")
                 .antMatchers("/VerEmpresas").access("hasRole('ADMIN')")
-                .antMatchers("/VerMovimientos/**").access("hasRole('OPERARIO') or hasRole('ADMIN')")
+                .antMatchers("/VerMovimientos").access("hasRole('OPERARIO') or hasRole('ADMIN')")
 
 ////                .antMatchers(HttpMethod.OPTIONS).permitAll()
 //                .antMatchers(HttpMethod.GET).permitAll()

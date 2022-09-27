@@ -52,10 +52,6 @@ public class controllerMovimientos {
         Long idEmpleado=movimientosServices.IdPorCorreo(correo);
         model.addAttribute("idEmpleado",idEmpleado);
 
-//        List<Empleado> empleList = empleadoServices.getAllEmpleados();
-//        model.addAttribute("emplist",empleList);
-
-
         List<Empresa> emprelist = empresaServices.getAllEmpresas();
         model.addAttribute("emprlist",emprelist);
         return "agregarMovimiento";
@@ -81,10 +77,19 @@ public class controllerMovimientos {
         MovimientoDinero mov = movimientosServices.getMovimientoById(id);
         model.addAttribute("mov", mov);
         model.addAttribute("mensaje", mensaje);
+
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        String correo=auth.getName();
+
+        Long idEmpleado=movimientosServices.IdPorCorreo(correo);
+        model.addAttribute("idEmpleado",idEmpleado);
+
         List<Empleado> empleList = empleadoServices.getAllEmpleados();
         model.addAttribute("emplist",empleList);
+
         List<Empresa> emprelist = empresaServices.getAllEmpresas();
         model.addAttribute("emprlist",emprelist);
+
         return "editarMovimiento";
     }
 

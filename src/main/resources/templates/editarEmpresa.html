@@ -99,42 +99,24 @@
     <div class="py-5 text-center d-flex flex-column align-items-center glass col-4">
         <h1 class="text-dark mb-4">Editar Empresa</h1>
         <form th:action="@{/ActualizarEmpresa}" th:object="${emp}" method="post" class="d-flex flex-column gap-3 align-items-center">
+            <input th:field="*{empresaId}" class="form-control" required="required" type="text" readonly>
             <input th:field="*{nitEmpresa}" class="form-control" required="required" type="text" placeholder="NIT/RUT de la Empresa">
             <input th:field="*{nombreEmpresa}" class="form-control" required="required" type="text" placeholder="Nombre de la Empresa">
             <input th:field="*{telefonoEmpresa}" class="form-control" required="required" type="text" placeholder="Telefono de la Empresa">
             <input th:field="*{direccionEmpresa}" class="form-control" required="required" type="text" placeholder="Direccion de la Empresa">
-            <input th:field="*{fechaCreacion}" class="form-control" required="" type="date" placeholder="Fecha Creación">
-            <input th:field="*{fechaActualizacion}" class="form-control" required="" type="date" placeholder="Fecha Modificación">
+            <input th:field="*{fechaCreacion}" class="form-control" required="" type="date" placeholder="Fecha Creación" readonly>
+            <input th:field="*{fechaActualizacion}" class="form-control" required="" type="date" placeholder="Fecha Modificación" id="fecha2" readonly>
 
             <button class="btn btn-brown text-white fw-bold px-3" type="submit">Actualizar Empresa</button>
         </form>
     </div>
 </div>
 <!--FORM-->
-</body>
 <script th:inline="javascript">
-    window.onload=function(){
-
-        var msg= [[${mensaje}]];
-        if (msg == "saveOK"){
-            Command : toastr["success"]("Empresa creada con éxito!")
-        }
-        else if (msg == "updateOK"){
-            Command : toastr["success"]("Empresa actualizada con éxito!")
-        }
-        else if (msg == "deleteOK"){
-            Command : toastr["error"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError"){
-            Command : toastr["error"]("Empresa no ha sido eliminada!")
-        }
-        toastr.options={
-            "positionClass": "toast-top-right",
-            "showDuration":"300",
-            "showMethod":"fadeIn",
-            "hideMethod":"fadeOut",
-        }
-    }
+     window.onload=function(){
+  document.getElementById("fecha2").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  }
 </script>
+</body>
 </body>
 </html>

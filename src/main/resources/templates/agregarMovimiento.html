@@ -98,14 +98,27 @@
 <div class="d-flex justify-content-center">
     <div class="py-5 text-center d-flex flex-column align-items-center glass col-4">
         <h1 class="text-dark mb-4">Nuevo Movimiento</h1>
+
         <form th:action="@{/GuardarMovimientos}" th:object="${mov}" method="post"
-              class="d-flex flex-column gap-3 align-items-center">
-            <input th:field="*{concepto}" class="form-control" required="required" type="text" placeholder="Concepto">
-            <input th:field="*{monto}" class="form-control" required="required" type="number" placeholder="Monto">
-            <!--            <select th:field="*{empleado}" class="form-control" id="empleado" required="required">-->
-            <!--                <option value="">&#45;&#45;Seleccione un Empleado&#45;&#45;</option>-->
-            <!--                <option th:each="empleado : ${emplist}" th:text="${empleado.nombre}" th:value="${empleado.empleadoId}"></option>-->
-            <!--            </select>-->
+              class="d-flex flex-column gap-3 align-items-center" NOVALIDATE>
+            <select id='op' class="form-control">
+                <option value="">--Seleccione un Concepto--</option>
+                <option value='1'>Ingreso</option>
+                <option value='2'>Egreso</option>
+            </select>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input class="form-control" type="number" placeholder="Monto" id="n1">
+            <input th:field="*{monto}" class="form-control" type="number" placeholder="Monto" id="n2" readonly hidden>
+            </div>
+            <input th:field="*{concepto}" class="form-control" required="required" type="text" placeholder="Detalle de Concepto">
+<!--            <input th:field="*{monto}" class="form-control" required="required" type="number" placeholder="Monto" hidden>-->
+<!--                        <select th:field="*{empleado}" class="form-control" id="empleado" required="required">-->
+<!--                            <option value="">&#45;&#45;Seleccione un Empleado&#45;&#45;</option>-->
+<!--                            <option th:each="empleado : ${emplist}" th:text="${empleado.nombre}" th:value="${empleado.empleadoId}"></option>-->
+<!--                        </select>-->
             <select th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
                 <option th:text="${#httpServletRequest.remoteUser}" th:value="${idEmpleado}"></option>
             </select>
@@ -116,26 +129,63 @@
                         th:value="${empresa.empresaId}"></option>
             </select>
             <input th:field="*{fechaCreacion}" class="form-control" required="required" type="date"
-                   placeholder="Fecha de creación">
+                   placeholder="Fecha de creación" id="fecha1" readonly>
             <input th:field="*{fechaActualizacion}" class="form-control" required="required" type="date"
-                   placeholder="Fecha de modificación">
+                   placeholder="Fecha de modificación" id="fecha2" readonly>
             <div class="align-items-right">
                 <button class="btn btn-brown text-white fw-bold px-3" type="submit">Crear Movimiento</button>
             </div>
+
+    <!--            <select id='op'>-->
+    <!--                <option value='1'>Ingreso</option>-->
+    <!--                <option value='2'>Egreso</option>-->
+    <!--            </select>-->
+    <!--            <input class="form-control" required="required" type="number" placeholder="Monto" id="n1">-->
+    <!--            <label th:field="*{monto}" class="form-control" type="number" placeholder="Monto" id="n2" readonly></label>-->
+    <!--            <input id="c" type="button" value="Calcular">-->
         </form>
     </div>
+
+
 </div>
 <!--FORM-->
 </body>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script th:inline="javascript">
   window.onload=function(){
-  document.getElementById("fecha").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  document.getElementById("fecha1").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  document.getElementById("fecha2").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
   }
-
 </script>
+
+<script th:inline="javascript">
+  window.addEventListener("DOMContentLoaded",function(){
+  document.getElementById('n1').addEventListener('input',function(){
+  var op = document.getElementById('op').value,
+  n1 = document.getElementById('n1').value,
+  operacion = (op == 1) ? n1*1 : n1*-1;
+  document.getElementById('n2').value = operacion;
+  console.log("ingrese");
+  });
+});
+</script>
+<script th:inline="javascript">
+// Create our number formatter.
+var formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
+document.querySelector('#typeNumber').addEventListener('change', (e)=>{
+  if(isNaN(e.target.value)){
+      e.target.value = ''
+  }else{
+    e.target.value = formatter.format(e.target.value);
+  }
+})
+</script>
+
 </body>
 </html>

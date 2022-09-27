@@ -118,14 +118,21 @@
                 <option th:value='ROLE_ADMIN'>Administrativo</option>
                 <option th:value='ROLE_OPERARIO'>Operario</option>
             </select>
-            <input th:field="*{contraseña}" class="form-control" type="password" placeholder="Password">
+
+            <div class="input-group-prepend">
+                <input name="chec" type="checkbox" id="chec" onchange="comprobar();"/>
+            <label for="chec">Cambiar Contraseña</label>
+                <input th:field="*{contraseña}" class="form-control" type="password" placeholder="Password" id="pass" readonly>
+            </div>
+
+
             <select th:field="*{estado}" class="form-control" required="required">
                 <option value="">--Seleccione un Estado--</option>
                 <option th:value='1'>Activo</option>
                 <option th:value='0'>Inactivo</option>
             </select>
-            <input th:field="*{fechaCreacion}" class="form-control" type="date" placeholder="Fecha Creación">
-            <input th:field="*{fechaModificacion}" class="form-control" type="date" placeholder="Fecha Modificación">
+            <input th:field="*{fechaCreacion}" class="form-control" type="date" placeholder="Fecha Creación" readonly>
+            <input th:field="*{fechaModificacion}" class="form-control" type="date" placeholder="Fecha Modificación" id="fecha2" readonly>
             <div class="align-items-right">
                 <button class="btn btn-brown text-white fw-bold px-3" type="submit">Actualizar Empleado</button>
             </div>
@@ -135,28 +142,15 @@
 <!--FORM-->
 
 <script th:inline="javascript">
-    window.onload=function(){
-
-        var msg= [[${mensaje}]];
-        if (msg == "saveOK"){
-            Command : toastr["success"]("Empresa creada con éxito!")
-        }
-        else if (msg == "updateOK"){
-            Command : toastr["success"]("Empresa actualizada con éxito!")
-        }
-        else if (msg == "deleteOK"){
-            Command : toastr["error"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError"){
-            Command : toastr["error"]("Empresa no ha sido eliminada!")
-        }
-        toastr.options={
-            "positionClass": "toast-top-right",
-            "showDuration":"300",
-            "showMethod":"fadeIn",
-            "hideMethod":"fadeOut",
-        }
-    }
+     window.onload=function(){
+  document.getElementById("fecha2").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  }
+    </script>
+<script th:inline="javascript">
+    function comprobar()
+{
+  document.getElementById('pass').readOnly = !document.getElementById("chec").checked;
+}
 </script>
 </body>
 </body>
