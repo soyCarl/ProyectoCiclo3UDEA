@@ -104,7 +104,7 @@
             <input th:field="*{nombreEmpresa}" class="form-control" required="required" type="text" placeholder="Nombre de la Empresa">
             <input th:field="*{telefonoEmpresa}" class="form-control" required="required" type="text" placeholder="Telefono de la Empresa">
             <input th:field="*{direccionEmpresa}" class="form-control" required="required" type="text" placeholder="Direccion de la Empresa">
-<!--            <input th:field="*{fechaCreacion}" class="form-control" required="" type="date" placeholder="Fecha Creación" readonly>-->
+            <input th:field="*{fechaCreacion}" class="form-control" required="" type="date" placeholder="Fecha Creación" id="fecha1" readonly>
             <input th:field="*{fechaActualizacion}" class="form-control" required="" type="date" placeholder="Fecha Modificación" id="fecha2" readonly>
 
             <button class="btn btn-brown text-white fw-bold px-3" type="submit">Actualizar Empresa</button>
@@ -114,6 +114,7 @@
 <!--FORM-->
 <script th:inline="javascript">
      window.onload=function(){
+     document.getElementById("fecha1").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
   document.getElementById("fecha2").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
   }
 </script>

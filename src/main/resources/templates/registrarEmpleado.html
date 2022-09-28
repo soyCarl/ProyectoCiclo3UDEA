@@ -66,8 +66,8 @@
                 <option th:value='1'>Activo</option>
                 <option th:value='0'>Inactivo</option>
             </select>
-            <input th:field="*{fechaCreacion}" class="form-control" type="date" placeholder="Fecha Creación">
-            <input th:field="*{fechaModificacion}" class="form-control" type="date" placeholder="Fecha Modificación">
+            <input th:field="*{fechaCreacion}" class="form-control" type="date" placeholder="Fecha Creación" id="fecha1" readonly>
+            <input th:field="*{fechaModificacion}" class="form-control" type="date" placeholder="Fecha Modificación" id="fecha2" readonly>
             <div class="align-items-right">
                 <button class="btn btn-brown text-white fw-bold px-3" type="submit">Crear Empleado</button>
                 <span>Si estas registrado <a th:href="@{/login}">inicia sesión aqui</a></span>
@@ -78,28 +78,10 @@
 <!--FORM-->
 
 <script th:inline="javascript">
-    window.onload=function(){
-
-        var msg= [[${mensaje}]];
-        if (msg == "saveOK"){
-            Command : toastr["success"]("Empresa creada con éxito!")
-        }
-        else if (msg == "updateOK"){
-            Command : toastr["success"]("Empresa actualizada con éxito!")
-        }
-        else if (msg == "deleteOK"){
-            Command : toastr["error"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError"){
-            Command : toastr["error"]("Empresa no ha sido eliminada!")
-        }
-        toastr.options={
-            "positionClass": "toast-top-right",
-            "showDuration":"300",
-            "showMethod":"fadeIn",
-            "hideMethod":"fadeOut",
-        }
-    }
+      window.onload=function(){
+  document.getElementById("fecha1").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  document.getElementById("fecha2").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  }
 </script>
 </body>
 </body>
