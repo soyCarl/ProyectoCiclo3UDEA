@@ -14,7 +14,7 @@ _ScrumTeam_
 
 * **Luisa Herrera** - *Scrum Master* - [Luisaherrera01](https://github.com/Luisaherrera01)
 * **Pablo Espinosa** - *Admin BD* - [PabloEspinosa133](https://github.com/PabloEspinosa133)
-* **Diego Tobón** - *Back Developer* - [soyCarl](https://github.com/soyCarl)
+* **Diego Tobón** - *Full Stack Developer* - [soyCarl](https://github.com/soyCarl)
 * **Armando Colón** - *Front Developer* - [ArmandoColMen](https://github.com/ArmandoColMen)
 * **Briggind Sierra** - *Developer* - [briggid](https://github.com/briggid)
 
